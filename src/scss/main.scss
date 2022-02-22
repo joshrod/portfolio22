@@ -1,0 +1,18 @@
+/* ABSTRACT FOLDER */
+@import "abstract/variables";
+@import "abstract/mixins";
+
+/* BASE FOLDER */
+@import "base/reset";
+@import "base/global";
+
+/* COMPONENTS FOLDER */
+@import "components/marquee-divider";
+@import "components/project-single";
+
+/* LAYOUT FOLDER */
+@import "layout/footer";
+@import "layout/header";
+
+/* PAGES FOLDER */
+@import "pages/home";

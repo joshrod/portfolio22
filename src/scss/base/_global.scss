@@ -1,0 +1,43 @@
+html {
+	font-size: 62.5%;
+}
+
+body {
+	// font: 1vw "DM Sans", sans-serif;
+	font-size: 1.6rem;
+	font-family: $dm-sans;
+	letter-spacing: -0.04em;
+	line-height: 1.15;
+	color: $offblack;
+}
+
+img.img-responsive {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+img.img-cover {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+li {
+	letter-spacing: -0.04em;
+}
+
+.display-text {
+	font-family: "Playfair Display", serif;
+	font-weight: 400;
+	letter-spacing: -0.02em;
+}

@@ -1,0 +1,50 @@
+.marquee-divider {
+	width: 100%;
+	overflow: hidden;
+	padding: 5rem 0;
+
+	.marquee-header {
+		font-size: 16.875vw;
+		font-weight: 500;
+		line-height: 1;
+		text-transform: uppercase;
+		letter-spacing: -0.04em;
+		@include breakpoint(sm) {
+			font-size: 15.972vw;
+		}
+		@include breakpoint(md) {
+			font-size: 11.031vw;
+		}
+		@include breakpoint(lg) {
+			font-size: 9.274vw;
+		}
+		@include breakpoint(xxl) {
+			font-size: 8.4027777779vw;
+		}
+	}
+
+	svg {
+		flex: 0 0 1rem;
+		fill: $infrared;
+		margin-right: 1.2rem;
+		margin-left: 1.2rem;
+		@include breakpoint(sm) {
+			flex: 0 0 1.5rem;
+		}
+		@include breakpoint(md) {
+			margin-right: 2rem;
+			margin-left: 2rem;
+		}
+		@include breakpoint(xl) {
+			margin-right: 2rem;
+			margin-left: 2rem;
+			flex: 0 0 1.25vw;
+		}
+	}
+
+	.top-marquee,
+	.bottom-marquee {
+		display: flex;
+		align-items: center;
+	}
+}

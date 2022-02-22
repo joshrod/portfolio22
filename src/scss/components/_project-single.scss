@@ -1,0 +1,149 @@
+.project {
+	display: block;
+	@include breakpoint(md) {
+		flex: 0 0 calc(50% - 1rem);
+	}
+	@include breakpoint(xl) {
+		display: flex;
+		flex-direction: row-reverse;
+		justify-content: space-between;
+	}
+
+	.project-top-mobile {
+		margin-bottom: 0.8rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		@include breakpoint(xl) {
+			display: none;
+		}
+
+		h3 {
+			font-size: 4.375vw;
+			text-transform: uppercase;
+			letter-spacing: -0.04em;
+			@include breakpoint(sm) {
+				font-size: 3.75vw;
+			}
+			@include breakpoint(md) {
+				font-size: 2.158vw;
+			}
+		}
+
+		.project-award-winner {
+			display: flex;
+			align-items: flex-start;
+
+			.award-icon {
+				width: 3.75vw;
+				@include breakpoint(sm) {
+					width: 3.125vw;
+				}
+				@include breakpoint(md) {
+					width: 1.918vw;
+				}
+			}
+
+			> h3 {
+				margin-left: 0.2rem;
+				line-height: 1;
+			}
+		}
+	}
+
+	.project-img-container {
+		width: 100%;
+		height: 50vmax;
+		margin-bottom: 1rem;
+		@include breakpoint(sm) {
+			height: 60vmax;
+		}
+		@include breakpoint(md) {
+			height: 35vmax;
+		}
+		@include breakpoint(xl) {
+			height: 85vmin;
+			flex: 0 0 55%;
+		}
+	}
+
+	.project-info {
+		@include breakpoint(xl) {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+		.project-info-desktop {
+			display: none;
+			align-items: center;
+			justify-content: space-between;
+			@include breakpoint(xl) {
+				display: flex;
+				flex-direction: column;
+				// align-items: flex-end;
+				align-items: flex-start;
+			}
+
+			h3 {
+				text-transform: uppercase;
+				letter-spacing: -0.04em;
+				font-size: 2.158vw;
+				// text-align: right;
+			}
+
+			> h3 {
+				margin-bottom: 0.5rem;
+			}
+
+			.project-award-winner {
+				display: flex;
+				align-items: flex-start;
+
+				.award-icon {
+					height: 1.640625vw;
+					margin-left: 0.390625vw;
+
+					img {
+						height: 100%;
+						width: auto;
+					}
+				}
+
+				> h3 {
+					margin-left: 0.2rem;
+					line-height: 0.85;
+				}
+			}
+		}
+
+		.project-title {
+			font-size: 10vw;
+			font-weight: 500;
+			letter-spacing: -0.04em;
+			margin-bottom: 0.5rem;
+			@include breakpoint(md) {
+				font-size: 6.475vw;
+			}
+			@include breakpoint(xl) {
+				// text-align: right;
+			}
+		}
+
+		.project-description,
+		.project-completion {
+			font-size: 4.375vw;
+			text-transform: uppercase;
+			letter-spacing: -0.04em;
+			margin-bottom: 0.5rem;
+			@include breakpoint(sm) {
+				font-size: 3.75vw;
+			}
+			@include breakpoint(md) {
+				font-size: 2.158vw;
+			}
+			@include breakpoint(xl) {
+				// text-align: right;
+			}
+		}
+	}
+}
