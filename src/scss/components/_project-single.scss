@@ -89,6 +89,9 @@
 				letter-spacing: -0.04em;
 				font-size: 2.158vw;
 				// text-align: right;
+				@include breakpoint(xxl) {
+					font-size: 1.66666666667vw;
+				}
 			}
 
 			> h3 {
@@ -100,7 +103,7 @@
 				align-items: flex-start;
 
 				.award-icon {
-					height: 1.640625vw;
+					height: 1.3888888888888vw;
 					margin-left: 0.390625vw;
 
 					img {
@@ -127,6 +130,9 @@
 			@include breakpoint(xl) {
 				// text-align: right;
 			}
+			@include breakpoint(xxl) {
+				font-size: 6.3888888888888vw;
+			}
 		}
 
 		.project-description,
@@ -141,8 +147,8 @@
 			@include breakpoint(md) {
 				font-size: 2.158vw;
 			}
-			@include breakpoint(xl) {
-				// text-align: right;
+			@include breakpoint(xxl) {
+				font-size: 1.666666667vw;
 			}
 		}
 	}

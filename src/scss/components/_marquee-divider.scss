@@ -42,8 +42,13 @@
 		}
 	}
 
-	.top-marquee,
-	.bottom-marquee {
+	// .top-marquee,
+	// .bottom-marquee {
+	// 	display: flex;
+	// 	align-items: center;
+	// }
+
+	.marquee-wrapper {
 		display: flex;
 		align-items: center;
 	}
