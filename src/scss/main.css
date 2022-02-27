@@ -189,8 +189,18 @@ li {
           align-items: center;
 }
 
+.marquee-divider .top-marquee {
+  -webkit-transform: translateX(-25%);
+          transform: translateX(-25%);
+}
+
 .project {
   display: block;
+  margin-bottom: 5rem;
+}
+
+.project:last-of-type {
+  margin-bottom: 0;
 }
 
 @media only screen and (min-width: 768px) {
@@ -203,6 +213,7 @@ li {
 
 @media only screen and (min-width: 1200px) {
   .project {
+    margin-bottom: 15.625vmax;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -213,6 +224,12 @@ li {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .project {
+    margin-bottom: 13.888888888889vw;
   }
 }
 
@@ -307,6 +324,7 @@ li {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 55%;
             flex: 0 0 55%;
+    margin-bottom: 0;
   }
 }
 
@@ -354,6 +372,12 @@ li {
   text-transform: uppercase;
   letter-spacing: -0.04em;
   font-size: 2.158vw;
+}
+
+@media only screen and (min-width: 1200px) {
+  .project .project-info .project-info-desktop h3 {
+    font-size: 1.875vw;
+  }
 }
 
 @media only screen and (min-width: 1440px) {
@@ -428,6 +452,13 @@ li {
   .project .project-info .project-description,
   .project .project-info .project-completion {
     font-size: 2.158vw;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .project .project-info .project-description,
+  .project .project-info .project-completion {
+    font-size: 1.875vw;
   }
 }
 

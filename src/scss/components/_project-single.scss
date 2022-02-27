@@ -1,12 +1,20 @@
 .project {
 	display: block;
+	margin-bottom: 5rem;
+	&:last-of-type {
+		margin-bottom: 0;
+	}
 	@include breakpoint(md) {
 		flex: 0 0 calc(50% - 1rem);
 	}
 	@include breakpoint(xl) {
+		margin-bottom: 15.625vmax;
 		display: flex;
 		flex-direction: row-reverse;
 		justify-content: space-between;
+	}
+	@include breakpoint(xxl) {
+		margin-bottom: 13.888888888889vw;
 	}
 
 	.project-top-mobile {
@@ -64,6 +72,7 @@
 		@include breakpoint(xl) {
 			height: 85vmin;
 			flex: 0 0 55%;
+			margin-bottom: 0;
 		}
 	}
 
@@ -89,6 +98,9 @@
 				letter-spacing: -0.04em;
 				font-size: 2.158vw;
 				// text-align: right;
+				@include breakpoint(xl) {
+					font-size: 1.875vw;
+				}
 				@include breakpoint(xxl) {
 					font-size: 1.66666666667vw;
 				}
@@ -146,6 +158,9 @@
 			}
 			@include breakpoint(md) {
 				font-size: 2.158vw;
+			}
+			@include breakpoint(xl) {
+				font-size: 1.875vw;
 			}
 			@include breakpoint(xxl) {
 				font-size: 1.666666667vw;

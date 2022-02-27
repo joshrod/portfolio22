@@ -52,4 +52,10 @@
 		display: flex;
 		align-items: center;
 	}
+
+	// * Take this off when integrating animations
+
+	.top-marquee {
+		transform: translateX(-25%);
+	}
 }
