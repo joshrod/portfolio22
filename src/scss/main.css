@@ -197,6 +197,7 @@ li {
 .project {
   display: block;
   margin-bottom: 5rem;
+  cursor: pointer;
 }
 
 .project:last-of-type {
@@ -493,9 +494,9 @@ footer .bottom-footer {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
 
 header {
@@ -636,7 +637,14 @@ header .menu-links .navlink:first-of-type {
 
 @media only screen and (min-width: 1200px) {
   .hero {
-    padding: 4.1666666vh 2.34375vw;
+    padding: 4.16667vh 2.34375vw;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .hero {
+    padding-right: 2.08333vw;
+    padding-left: 2.08333vw;
   }
 }
 
@@ -769,6 +777,55 @@ header .menu-links .navlink:first-of-type {
   }
 }
 
+.hero .hero-bottom .hero-circle {
+  position: absolute;
+  width: 7rem;
+  right: 1.5rem;
+  bottom: 5.556vh;
+}
+
+@media only screen and (min-width: 768px) {
+  .hero .hero-bottom .hero-circle {
+    right: 3rem;
+    bottom: 9.765625vh;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .hero .hero-bottom .hero-circle {
+    bottom: 7.32064421vh;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .hero .hero-bottom .hero-circle {
+    right: 2.34375vw;
+    bottom: 4.1666666vh;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .hero .hero-bottom .hero-circle {
+    width: 6.9444444445vw;
+    right: 2.08333vw;
+  }
+}
+
+.hero .hero-bottom .hero-circle #white-arrow {
+  width: 1.8rem;
+  position: absolute;
+  top: 47%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+@media only screen and (min-width: 1440px) {
+  .hero .hero-bottom .hero-circle #white-arrow {
+    width: 1.875vw;
+  }
+}
+
 .hero .hero-bottom .hero-nav {
   display: none;
 }
@@ -840,6 +897,7 @@ header .menu-links .navlink:first-of-type {
 
 @media only screen and (min-width: 1200px) {
   .hero .hero-circle {
+    right: 2.34375vw;
     bottom: 4.1666666vh;
   }
 }
@@ -847,6 +905,7 @@ header .menu-links .navlink:first-of-type {
 @media only screen and (min-width: 1440px) {
   .hero .hero-circle {
     width: 6.9444444445vw;
+    right: 2.08333vw;
   }
 }
 
@@ -899,14 +958,18 @@ header .menu-links .navlink:first-of-type {
 @media only screen and (min-width: 1200px) {
   .about-me {
     padding-top: 11.71875vmax;
+    padding-right: 2.34375vw;
     padding-bottom: 11.71875vmax;
+    padding-left: 2.34375vw;
   }
 }
 
 @media only screen and (min-width: 1440px) {
   .about-me {
     padding-top: 10.4166666666vmax;
+    padding-right: 2.0833333333333vw;
     padding-bottom: 10.4166666666vmax;
+    padding-left: 2.0833333333333vw;
   }
 }
 
@@ -989,13 +1052,17 @@ header .menu-links .navlink:first-of-type {
 @media only screen and (min-width: 1200px) {
   .projects {
     display: block;
+    padding-right: 2.34375vw;
+    padding-left: 2.34375vw;
   }
 }
 
 @media only screen and (min-width: 1440px) {
   .projects {
     padding-top: 10.4166666666vmax;
+    padding-right: 2.08333vw;
     padding-bottom: 10.4166666666vmax;
+    padding-left: 2.08333vw;
   }
 }
 
@@ -1018,15 +1085,47 @@ header .menu-links .navlink:first-of-type {
   }
 }
 
+@media only screen and (min-width: 1200px) {
+  .text-break {
+    padding-right: 2.34375vw;
+    padding-left: 2.34375vw;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .text-break {
+    padding-right: 2.08333vw;
+    padding-left: 2.08333vw;
+  }
+}
+
 .text-break .text-break-heading {
-  font-size: 7.5vw;
   line-height: 1;
   text-transform: uppercase;
+  font-size: 7.5vw;
 }
 
 @media only screen and (min-width: 480px) {
   .text-break .text-break-heading {
-    font-size: 5.3819444445vw;
+    font-size: 5.556vw;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .text-break .text-break-heading {
+    font-size: 5.33854166666vw;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .text-break .text-break-heading {
+    font-size: 3.5937499999999vw;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .text-break .text-break-heading {
+    font-size: 3.19444444444vw;
   }
 }
 
@@ -1044,7 +1143,16 @@ header .menu-links .navlink:first-of-type {
 
 .contact {
   width: 100%;
-  padding: 5rem 0;
+  padding: 10rem 1.5rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .contact {
+    padding-top: 9.765625vh;
+    padding-right: 3rem;
+    padding-bottom: 9.765625vh;
+    padding-left: 3rem;
+  }
 }
 
 @media only screen and (min-width: 992px) {
@@ -1100,6 +1208,89 @@ header .menu-links .navlink:first-of-type {
   .contact .contact-content .contact-copy {
     font-size: 3.75vw;
   }
+}
+
+.contact .contact-content .no-animations-heading {
+  margin-bottom: 3rem;
+  line-height: 1;
+  text-transform: uppercase;
+  font-size: 7.5vw;
+}
+
+@media only screen and (min-width: 480px) {
+  .contact .contact-content .no-animations-heading {
+    font-size: 5.556vw;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .contact .contact-content .no-animations-heading {
+    font-size: 5.33854166666vw;
+    margin-bottom: 7.8125vmin;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .contact .contact-content .no-animations-heading {
+    font-size: 3.5937499999999vw;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .contact .contact-content .no-animations-heading {
+    font-size: 3.19444444444vw;
+  }
+}
+
+.contact .contact-content .no-animations-heading .display-text {
+  color: #ff1744;
+  font-weight: bold;
+  font-size: 15.625vw;
+}
+
+@media only screen and (min-width: 768px) {
+  .contact .contact-content .no-animations-heading .display-text {
+    font-size: 15.7552083333334vw;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .contact .contact-content .no-animations-heading .display-text {
+    font-size: 11.81640625vw;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .contact .contact-content .no-animations-heading .display-text {
+    font-size: 12.34375vw;
+  }
+}
+
+.contact .contact-content .no-animations-email {
+  font-size: 8.75vw;
+  font-weight: 500;
+}
+
+@media only screen and (min-width: 768px) {
+  .contact .contact-content .no-animations-email {
+    font-size: 7.03125vw;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .contact .contact-content .no-animations-email {
+    font-size: 6.475vw;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .contact .contact-content .no-animations-email {
+    font-size: 5.46875vw;
+  }
+}
+
+.contact .contact-content .no-animations-email .red-text {
+  color: #ff1744;
 }
 
 .contact .contact-content .contact-marquee {

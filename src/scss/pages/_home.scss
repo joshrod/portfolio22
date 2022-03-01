@@ -24,7 +24,11 @@
 		padding: 7.32064421vh $lg;
 	}
 	@include breakpoint(xl) {
-		padding: 4.1666666vh 2.34375vw;
+		padding: 4.1666666vh $xl;
+	}
+	@include breakpoint(xxl) {
+		padding-right: $xxl;
+		padding-left: $xxl;
 	}
 
 	.hero-top {
@@ -109,6 +113,40 @@
 			}
 		}
 
+		.hero-circle {
+			// position: fixed;
+			position: absolute;
+			width: 7rem;
+			right: 1.5rem;
+			bottom: 5.556vh;
+			@include breakpoint(md) {
+				right: $md;
+				bottom: 9.765625vh;
+			}
+			@include breakpoint(lg) {
+				bottom: 7.32064421vh;
+			}
+			@include breakpoint(xl) {
+				right: $xl;
+				bottom: 4.1666666vh;
+			}
+			@include breakpoint(xxl) {
+				width: 6.9444444445vw;
+				right: $xxl;
+			}
+
+			#white-arrow {
+				width: 1.8rem;
+				position: absolute;
+				top: 47%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				@include breakpoint(xxl) {
+					width: 1.875vw;
+				}
+			}
+		}
+
 		.hero-nav {
 			display: none;
 			@include breakpoint(sm) {
@@ -150,10 +188,12 @@
 			bottom: 7.32064421vh;
 		}
 		@include breakpoint(xl) {
+			right: $xl;
 			bottom: 4.1666666vh;
 		}
 		@include breakpoint(xxl) {
 			width: 6.9444444445vw;
+			right: $xxl;
 		}
 
 		#white-arrow {
@@ -191,12 +231,17 @@
 	}
 	@include breakpoint(xl) {
 		padding-top: 11.71875vmax;
+		padding-right: $xl;
 		padding-bottom: 11.71875vmax;
+		padding-left: $xl;
 	}
 	@include breakpoint(xxl) {
 		padding-top: 10.4166666666vmax;
+		padding-right: 2.0833333333333vw;
 		padding-bottom: 10.4166666666vmax;
+		padding-left: 2.0833333333333vw;
 	}
+
 	.about-paragraph {
 		width: 80%;
 		margin-bottom: 7.8125vmin;
@@ -257,10 +302,14 @@
 	}
 	@include breakpoint(xl) {
 		display: block;
+		padding-right: $xl;
+		padding-left: $xl;
 	}
 	@include breakpoint(xxl) {
 		padding-top: 10.4166666666vmax;
+		padding-right: $xxl;
 		padding-bottom: 10.4166666666vmax;
+		padding-left: $xxl;
 	}
 }
 
@@ -274,14 +323,30 @@
 	@include breakpoint(md) {
 		padding: 5rem $md;
 	}
+	@include breakpoint(xl) {
+		padding-right: $xl;
+		padding-left: $xl;
+	}
+	@include breakpoint(xxl) {
+		padding-right: $xxl;
+		padding-left: $xxl;
+	}
 
 	.text-break-heading {
-		// font-size: 21.875vw;
-		font-size: 7.5vw;
 		line-height: 1;
 		text-transform: uppercase;
+		font-size: 7.5vw;
 		@include breakpoint(sm) {
-			font-size: 5.3819444445vw;
+			font-size: 5.556vw;
+		}
+		@include breakpoint(md) {
+			font-size: 5.33854166666vw;
+		}
+		@include breakpoint(xl) {
+			font-size: 3.5937499999999vw;
+		}
+		@include breakpoint(xxl) {
+			font-size: 3.19444444444vw;
 		}
 
 		.display-text {
@@ -299,7 +364,13 @@
 	width: 100%;
 	// height: 100vh;
 	// min-height: 100vh;
-	padding: 5rem 0;
+	padding: 10rem 1.5rem;
+	@include breakpoint(md) {
+		padding-top: 9.765625vh;
+		padding-right: $md;
+		padding-bottom: 9.765625vh;
+		padding-left: $md;
+	}
 	@include breakpoint(lg) {
 		display: flex;
 		flex-direction: column;
@@ -330,6 +401,62 @@
 			}
 			@include breakpoint(xxl) {
 				font-size: 3.75vw;
+			}
+		}
+
+		.no-animations-heading {
+			margin-bottom: 3rem;
+			line-height: 1;
+			text-transform: uppercase;
+			font-size: 7.5vw;
+			@include breakpoint(sm) {
+				font-size: 5.556vw;
+			}
+			@include breakpoint(md) {
+				font-size: 5.33854166666vw;
+				margin-bottom: 7.8125vmin;
+			}
+			@include breakpoint(xl) {
+				font-size: 3.5937499999999vw;
+			}
+			@include breakpoint(xxl) {
+				font-size: 3.19444444444vw;
+			}
+
+			.display-text {
+				color: $infrared;
+				font-weight: bold;
+				font-size: 15.625vw;
+				@include breakpoint(md) {
+					font-size: 15.7552083333334vw;
+				}
+				@include breakpoint(lg) {
+					font-size: 11.81640625vw;
+					// font-size: 15.4296875vw;
+				}
+				@include breakpoint(xl) {
+					// font-size: 17vw;
+					font-size: 12.34375vw;
+				}
+			}
+		}
+
+		.no-animations-email {
+			font-size: 8.75vw;
+			font-weight: 500;
+			@include breakpoint(md) {
+				// font-size: 8.393vw;
+				font-size: 7.03125vw;
+			}
+			@include breakpoint(lg) {
+				font-size: 6.475vw;
+			}
+			@include breakpoint(xl) {
+				font-size: 5.46875vw;
+			}
+
+			.red-text {
+				color: $infrared;
 			}
 		}
 
