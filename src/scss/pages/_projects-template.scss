@@ -1,0 +1,526 @@
+.project-header {
+	padding: $sm;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	@include breakpoint(md) {
+		padding: $md;
+	}
+	@include breakpoint(xl) {
+		padding: 1.5625vmax $xl;
+	}
+	@include breakpoint(xxl) {
+		padding: 1.38888888888vw $xxl;
+	}
+
+	.project-title {
+		h1 {
+			font-size: 10vw;
+			font-weight: 500;
+			letter-spacing: -0.04em;
+			@include breakpoint(md) {
+				font-size: 6.475vw;
+			}
+			@include breakpoint(xl) {
+				font-size: 5.46875vw;
+			}
+			@include breakpoint(xxl) {
+				// font-size: 6.3888888888888vw;
+				font-size: 4.861111111111112vw;
+			}
+		}
+	}
+
+	.back-to-main {
+		display: flex;
+		align-items: center;
+		cursor: pointer;
+
+		.back-arrow {
+			width: 6.25vw;
+			margin-right: 1.5625vw;
+			@include breakpoint(md) {
+				width: 3.125vw;
+				margin-right: 1.04166666665vw;
+			}
+			@include breakpoint(xl) {
+				width: 2.5vw;
+				margin-right: 0.625vw;
+			}
+			@include breakpoint(xxl) {
+				width: 2.77777777777777vw;
+				margin-right: 0.694444444444vw;
+			}
+		}
+
+		> h3 {
+			font-size: 7.5vw;
+			font-weight: 500;
+			letter-spacing: -0.04em;
+			line-height: 0.9;
+			@include breakpoint(md) {
+				// font-size: 6.475vw;
+				font-size: 4.1666666666666vw;
+			}
+			@include breakpoint(lg) {
+				font-size: 4.00390625vw;
+			}
+			@include breakpoint(xl) {
+				font-size: 3.20312499999996vw;
+			}
+			@include breakpoint(xxl) {
+				font-size: 3.75vw;
+			}
+		}
+	}
+}
+
+.project-hero-container {
+	width: 100%;
+	// height: 20rem;
+	height: 34.72222222222vmax;
+	@include breakpoint(md) {
+		height: 39.0625vmax;
+	}
+	@include breakpoint(xl) {
+		height: 46.875vmax;
+	}
+
+	> img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}
+
+.project-quick-hits {
+	padding: $sm $sm 8.680555555555555vmax;
+	display: flex;
+	flex-direction: column;
+	@include breakpoint(md) {
+		padding: $md $md 7.8125vmax;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+	@include breakpoint(xl) {
+		padding: 1.5625vmax $xl 5.859375vw;
+	}
+	@include breakpoint(xxl) {
+		padding: 1.38888888888vmax $xxl 5.5555555555vmax;
+	}
+
+	> div {
+		margin-bottom: 3.4722222222223vmax;
+		@include breakpoint(md) {
+			flex: 0 0 25%;
+		}
+		&:last-of-type {
+			margin-bottom: 0;
+		}
+		> h5 {
+			font-size: 3.75vw;
+			// font-size: 1.2rem;
+			text-transform: uppercase;
+			@include breakpoint(sm) {
+				font-size: 3.125vw;
+			}
+			@include breakpoint(md) {
+				font-size: 2.08333333333333vw;
+			}
+			@include breakpoint(lg) {
+				font-size: 1.5625vw;
+			}
+			@include breakpoint(xl) {
+				font-size: 1.25vw;
+			}
+			@include breakpoint(xxl) {
+				// font-size: 0.972222222222vw;
+				font-size: 1.11111111111112vw;
+			}
+		}
+
+		> p {
+			font-size: 5vw;
+			// font-size: 1.6rem;
+			@include breakpoint(sm) {
+				font-size: 4.166666666666vw;
+			}
+			@include breakpoint(md) {
+				// font-size: 2.8645833333333vw;
+				font-size: 2.604166666667vw;
+			}
+			@include breakpoint(lg) {
+				font-size: 1.953125vw;
+			}
+			@include breakpoint(xl) {
+				font-size: 1.5625vw;
+			}
+			@include breakpoint(xxl) {
+				// font-size: 1.666666666667vw;
+				font-size: 1.38888888888888vw;
+			}
+		}
+	}
+}
+
+.project-synopsis {
+	padding: 8.680555555555555vmax $sm;
+	@include breakpoint(md) {
+		padding: 7.8125vmax $md;
+		display: flex;
+		justify-content: space-between;
+	}
+	@include breakpoint(xl) {
+		padding: 5.859375vw $xl;
+	}
+	@include breakpoint(xxl) {
+		padding: 5.5555555555555vmax $xxl;
+	}
+
+	.project-overview {
+		margin-bottom: 17.3611111111111vmax;
+		@include breakpoint(md) {
+			margin-bottom: 0;
+			// flex: 0 0 37.5%;
+			flex: 0 0 47.3958333333%;
+		}
+		@include breakpoint(xl) {
+			flex: 0 0 41.66666667%;
+		}
+		@include breakpoint(xxl) {
+			flex: 0 0 37.5%;
+		}
+
+		> h1 {
+			font-size: 7.5vw;
+			font-weight: 500;
+			letter-spacing: -0.04em;
+			line-height: 0.9;
+			margin-bottom: 4.34027777778vmax;
+			@include breakpoint(md) {
+				// font-size: 6.475vw;
+				font-size: 4.1666666666666vw;
+			}
+			@include breakpoint(lg) {
+				font-size: 4.00390625vw;
+			}
+			@include breakpoint(xl) {
+				font-size: 3.20312499999996vw;
+				margin-bottom: 3.125vmax;
+			}
+			@include breakpoint(xxl) {
+				font-size: 3.75vw;
+				margin-bottom: 3.47222222222222223vmax;
+			}
+		}
+
+		> p {
+			font-size: 5vw;
+			margin-bottom: 4.34027777777778vmax;
+			@include breakpoint(sm) {
+				font-size: 4.166666666666vw;
+			}
+			@include breakpoint(md) {
+				// font-size: 2.8645833333333vw;
+				font-size: 2.604166666667vw;
+			}
+			@include breakpoint(lg) {
+				font-size: 1.953125vw;
+				margin-bottom: 3.125vmax;
+			}
+			@include breakpoint(xl) {
+				font-size: 1.5625vw;
+			}
+			@include breakpoint(xxl) {
+				font-size: 1.666666666667vw;
+			}
+		}
+
+		.visit-website {
+			display: flex;
+			align-items: center;
+			cursor: pointer;
+
+			> h1 {
+				font-size: 7.5vw;
+				font-weight: 500;
+				letter-spacing: -0.04em;
+				line-height: 0.9;
+				margin-right: 0.8rem;
+				@include breakpoint(md) {
+					// font-size: 6.475vw;
+					font-size: 4.1666666666666vw;
+				}
+				@include breakpoint(lg) {
+					font-size: 4.00390625vw;
+				}
+				@include breakpoint(xl) {
+					font-size: 3.20312499999996vw;
+				}
+				@include breakpoint(xxl) {
+					font-size: 3.75vw;
+				}
+			}
+
+			.diagonal-arrow {
+				width: 5vw;
+				@include breakpoint(md) {
+					width: 2.604166666667vw;
+				}
+				@include breakpoint(xl) {
+					width: 2.1875vw;
+				}
+			}
+		}
+	}
+
+	.project-awards {
+		@include breakpoint(md) {
+			// flex: 0 0 50%;
+			flex: 0 0 47.3958333333%;
+		}
+		@include breakpoint(xl) {
+			flex: 0 0 50%;
+		}
+
+		> h1 {
+			font-size: 7.5vw;
+			font-weight: 500;
+			letter-spacing: -0.04em;
+			line-height: 0.9;
+			margin-right: 0.8rem;
+			margin-bottom: 4.34027777777778vmax;
+			@include breakpoint(md) {
+				// font-size: 6.475vw;
+				font-size: 4.1666666666666vw;
+			}
+			@include breakpoint(lg) {
+				font-size: 4.00390625vw;
+			}
+			@include breakpoint(xl) {
+				font-size: 3.20312499999996vw;
+				margin-bottom: 3.125vmax;
+			}
+			@include breakpoint(xxl) {
+				font-size: 3.75vw;
+				margin-bottom: 3.47222222222222223vmax;
+			}
+		}
+
+		.awards-table-mobile {
+			display: flex;
+			justify-content: space-between;
+			@include breakpoint(xl) {
+				display: none;
+			}
+
+			.awards-table-headings {
+				> h3 {
+					font-size: 3.75vw;
+					line-height: 1.55;
+					// font-size: 1.2rem;
+					text-transform: uppercase;
+					@include breakpoint(sm) {
+						font-size: 3.125vw;
+					}
+					@include breakpoint(md) {
+						font-size: 2.08333333333333vw;
+					}
+					@include breakpoint(lg) {
+						font-size: 1.5625vw;
+						line-height: 1.4;
+					}
+				}
+			}
+
+			.awards-table-titles {
+				.awards-table-award {
+					margin-bottom: 5.20833333333vmax;
+					&:last-of-type {
+						margin-bottom: 0;
+					}
+
+					> p {
+						font-size: 5vw;
+						@include breakpoint(sm) {
+							font-size: 4.166666666666vw;
+						}
+						@include breakpoint(md) {
+							// font-size: 2.8645833333333vw;
+							font-size: 2.604166666667vw;
+						}
+						@include breakpoint(lg) {
+							font-size: 1.953125vw;
+						}
+						@include breakpoint(xl) {
+							font-size: 1.5625vw;
+						}
+					}
+				}
+			}
+		}
+
+		.awards-table-desktop {
+			display: none;
+			@include breakpoint(xl) {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				// row-gap: 1.5625vmax;
+			}
+
+			> h3 {
+				@include breakpoint(xl) {
+					font-size: 1.25vw;
+					text-transform: uppercase;
+					margin-bottom: 1.5625vmax;
+				}
+				@include breakpoint(xxl) {
+					font-size: 1.11111111111112vw;
+					margin-bottom: 1.3888888888888vmax;
+				}
+			}
+
+			> p {
+				@include breakpoint(xl) {
+					font-size: 1.5625vw;
+					margin-bottom: 3.90625vmax;
+				}
+				@include breakpoint(xxl) {
+					font-size: 1.666666666667vw;
+					margin-bottom: 3.47222222222222223vmax;
+				}
+			}
+		}
+	}
+}
+
+.project-images {
+	padding: 8.680555555555555vmax $sm;
+	@include breakpoint(md) {
+		padding: 7.8125vmax $md;
+	}
+	@include breakpoint(xl) {
+		padding: 5.859375vw $xl;
+	}
+	@include breakpoint(xxl) {
+		padding: 5.5555555555555vmax $xxl;
+	}
+
+	.project-desktop-images {
+		margin-bottom: 13.888888888888vmax;
+		@include breakpoint(md) {
+			margin-bottom: 20.83333333333336vmax;
+		}
+		@include breakpoint(xl) {
+			margin-bottom: 15.625vmax;
+		}
+		@include breakpoint(xxl) {
+			margin-bottom: 13.8888888888889vmax;
+		}
+
+		.project-desktop-image-container {
+			margin-bottom: 6.944444444445vmax;
+			&:last-of-type {
+				margin-bottom: 0;
+			}
+			@include breakpoint(md) {
+				width: 87.5%;
+				&:nth-of-type(even) {
+					margin-left: auto;
+				}
+			}
+			@include breakpoint(xl) {
+				width: 75%;
+			}
+		}
+	}
+	.project-mobile-images {
+		@include breakpoint(md) {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			column-gap: 2.604166666667vw;
+		}
+		@include breakpoint(xl) {
+			column-gap: 1.5625vw;
+		}
+		@include breakpoint(xxl) {
+			column-gap: 1.388888888888888vw;
+		}
+
+		.project-mobile-image-container {
+			width: 50%;
+			&:nth-of-type(even) {
+				margin-left: auto;
+			}
+			@include breakpoint(md) {
+				width: 100%;
+				&:nth-of-type(even) {
+					margin-left: 0;
+				}
+				&:nth-of-type(2) {
+					margin-top: 100%;
+				}
+				&:nth-of-type(3) {
+					margin-top: 200%;
+				}
+				&:nth-of-type(4) {
+					margin-top: 300%;
+				}
+			}
+		}
+	}
+}
+
+.next-project {
+	padding: $sm $sm 8.680555555555555vmax;
+	@include breakpoint(md) {
+		padding: 7.8125vmax $md;
+	}
+	@include breakpoint(xl) {
+		padding: 5.859375vw $xl;
+	}
+	@include breakpoint(xxl) {
+		padding: 5.5555555555555vmax $xxl;
+	}
+
+	.project {
+		@include breakpoint(md) {
+			display: flex;
+			flex-direction: row-reverse;
+			justify-content: space-between;
+		}
+		.project-top-mobile {
+			@include breakpoint(md) {
+				display: none;
+			}
+		}
+
+		.project-img-container {
+			@include breakpoint(md) {
+				height: 40vmax;
+				flex: 0 0 55%;
+			}
+			@include breakpoint(xl) {
+				height: 85vmin;
+				flex: 0 0 55%;
+				margin-bottom: 0;
+			}
+		}
+
+		.project-info {
+			@include breakpoint(md) {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+			}
+
+			.project-info-desktop {
+				@include breakpoint(md) {
+					display: flex;
+					flex-direction: column;
+					align-items: flex-start;
+				}
+			}
+		}
+	}
+}
