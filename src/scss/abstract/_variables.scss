@@ -7,9 +7,23 @@ $offblack: #141c28;
 $dm-sans: "DM Sans", sans-serif;
 $playfair: "Playfair Display", serif;
 
-/* Spacing */
-$sm: 1.5rem;
-$md: 3rem;
-$lg: 2.9296875vw;
-$xl: 2.34375vw;
-$xxl: 2.083333333333333vw;
+/* Horizontal Spacing Within Container */
+$sm-x: 1.5rem;
+$md-x: 3rem;
+$lg-x: 2.9296875vw; // 30px @ 1024px
+$xl-x: 2.34375vw; // 30px @ 1280px
+$xxl-x: 2.083333333333333vw; // 30px @ 1440px
+
+/* Vertical Spacing Within Container */
+$sm-y: 1.5rem;
+$md-y: 3rem;
+$lg-y: 2.9296875vmax; // 30px @ 1024pz
+$xl-y: 1.5625vmax; // 20px @ 1280px
+$xxl-y: 1.3888888888888888vmax; // 20px @ 1440px
+
+/* Vertical Spacing Between Sections */
+$section-sm-y: 8.680555555555555vmax; // 50px @ 576px
+$section-md-y: 13.88888888888889vmax; // 80px @ 768px
+$section-lg-y: 7.8125vmax; // 80px @ 1024px
+$section-xl-y: 5.859375vmax; // 75px @ 1280px
+$section-xxl-y: 5.555555555555555vmax; // 80px @ 1440px

@@ -1,9 +1,9 @@
 .hero {
 	height: calc(100vh - 7.5rem);
 	padding-top: 5.2083vh;
-	padding-right: $sm;
+	padding-right: $sm-x;
 	padding-bottom: 20.8333333vh;
-	padding-left: $sm;
+	padding-left: $sm-x;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -14,21 +14,21 @@
 		height: calc(100vh - 12rem);
 		min-height: 60rem;
 		padding-top: 2.9296875vh;
-		padding-right: $md;
+		padding-right: $md-x;
 		padding-bottom: 9.765625vh;
-		padding-left: $md;
+		padding-left: $md-x;
 	}
 	@include breakpoint(lg) {
 		height: 100vh;
 		min-height: 100vh;
-		padding: 7.32064421vh $lg;
+		padding: 7.32064421vh $lg-x;
 	}
 	@include breakpoint(xl) {
-		padding: 4.1666666vh $xl;
+		padding: 4.1666666vh $xl-x;
 	}
 	@include breakpoint(xxl) {
-		padding-right: $xxl;
-		padding-left: $xxl;
+		padding-right: $xxl-x;
+		padding-left: $xxl-x;
 	}
 
 	.hero-top {
@@ -120,19 +120,19 @@
 			right: 1.5rem;
 			bottom: 5.556vh;
 			@include breakpoint(md) {
-				right: $md;
+				right: $md-x;
 				bottom: 9.765625vh;
 			}
 			@include breakpoint(lg) {
 				bottom: 7.32064421vh;
 			}
 			@include breakpoint(xl) {
-				right: $xl;
+				right: $xl-x;
 				bottom: 4.1666666vh;
 			}
 			@include breakpoint(xxl) {
 				width: 6.9444444445vw;
-				right: $xxl;
+				right: $xxl-x;
 			}
 
 			#white-arrow {
@@ -181,19 +181,19 @@
 		right: 1.5rem;
 		bottom: 5.556vh;
 		@include breakpoint(md) {
-			right: $md;
+			right: $md-x;
 			bottom: 9.765625vh;
 		}
 		@include breakpoint(lg) {
 			bottom: 7.32064421vh;
 		}
 		@include breakpoint(xl) {
-			right: $xl;
+			right: $xl-x;
 			bottom: 4.1666666vh;
 		}
 		@include breakpoint(xxl) {
 			width: 6.9444444445vw;
-			right: $xxl;
+			right: $xxl-x;
 		}
 
 		#white-arrow {
@@ -211,29 +211,29 @@
 
 .about-me {
 	padding-top: 0;
-	padding-right: $sm;
+	padding-right: $sm-x;
 	padding-bottom: 5rem;
-	padding-left: $sm;
+	padding-left: $sm-x;
 	@include breakpoint(sm) {
 		padding-top: 5rem;
 	}
 	@include breakpoint(md) {
 		padding-top: 7.8125vmax;
-		padding-right: $md;
+		padding-right: $md-x;
 		padding-bottom: 7.8125vmax;
-		padding-left: $md;
+		padding-left: $md-x;
 	}
 	@include breakpoint(lg) {
 		padding-top: 9.765625vmax;
-		padding-right: $lg;
+		padding-right: $lg-x;
 		padding-bottom: 9.765625vmax;
-		padding-left: $lg;
+		padding-left: $lg-x;
 	}
 	@include breakpoint(xl) {
 		padding-top: 11.71875vmax;
-		padding-right: $xl;
+		padding-right: $xl-x;
 		padding-bottom: 11.71875vmax;
-		padding-left: $xl;
+		padding-left: $xl-x;
 	}
 	@include breakpoint(xxl) {
 		padding-top: 10.4166666666vmax;
@@ -288,7 +288,7 @@
 .projects {
 	padding: 5rem 1.5rem;
 	@include breakpoint(md) {
-		padding: 5rem $md;
+		padding: 5rem $md-x;
 		display: flex;
 		align-items: flex-start;
 		justify-content: space-between;
@@ -296,20 +296,20 @@
 	}
 	@include breakpoint(lg) {
 		padding-top: 9.765625vmax;
-		padding-right: $lg;
+		padding-right: $lg-x;
 		padding-bottom: 9.765625vmax;
-		padding-left: $lg;
+		padding-left: $lg-x;
 	}
 	@include breakpoint(xl) {
 		display: block;
-		padding-right: $xl;
-		padding-left: $xl;
+		padding-right: $xl-x;
+		padding-left: $xl-x;
 	}
 	@include breakpoint(xxl) {
 		padding-top: 10.4166666666vmax;
-		padding-right: $xxl;
+		padding-right: $xxl-x;
 		padding-bottom: 10.4166666666vmax;
-		padding-left: $xxl;
+		padding-left: $xxl-x;
 	}
 }
 
@@ -321,15 +321,15 @@
 	display: flex;
 	align-items: center;
 	@include breakpoint(md) {
-		padding: 5rem $md;
+		padding: 5rem $md-x;
 	}
 	@include breakpoint(xl) {
-		padding-right: $xl;
-		padding-left: $xl;
+		padding-right: $xl-x;
+		padding-left: $xl-x;
 	}
 	@include breakpoint(xxl) {
-		padding-right: $xxl;
-		padding-left: $xxl;
+		padding-right: $xxl-x;
+		padding-left: $xxl-x;
 	}
 
 	.text-break-heading {
@@ -367,20 +367,24 @@
 	padding: 10rem 1.5rem;
 	@include breakpoint(md) {
 		padding-top: 9.765625vh;
-		padding-right: $md;
+		padding-right: $md-x;
 		padding-bottom: 9.765625vh;
-		padding-left: $md;
+		padding-left: $md-x;
 	}
 	@include breakpoint(lg) {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 	}
+	@include breakpoint(xl) {
+		height: 100vh;
+		min-height: 100vh;
+	}
 
 	.contact-content {
 		.contact-copy {
-			padding-right: $sm;
-			padding-left: $sm;
+			padding-right: $sm-x;
+			padding-left: $sm-x;
 			font-size: 7.5vw;
 			margin-bottom: 6.5rem;
 			letter-spacing: -0.04em;
@@ -388,8 +392,8 @@
 				font-size: 5.556vw;
 			}
 			@include breakpoint(md) {
-				padding-right: $md;
-				padding-left: $md;
+				padding-right: $md-x;
+				padding-left: $md-x;
 				font-size: 5.036vw;
 			}
 			@include breakpoint(lg) {
@@ -436,7 +440,8 @@
 				}
 				@include breakpoint(xl) {
 					// font-size: 17vw;
-					font-size: 12.34375vw;
+					// font-size: 12.34375vw;
+					font-size: 16.171875vw;
 				}
 			}
 		}
@@ -453,6 +458,10 @@
 			}
 			@include breakpoint(xl) {
 				font-size: 5.46875vw;
+			}
+
+			> a {
+				cursor: pointer;
 			}
 
 			.red-text {

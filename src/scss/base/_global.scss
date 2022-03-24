@@ -24,6 +24,8 @@ img.img-cover {
 	object-fit: cover;
 }
 
+/* GENERAL TEXT STYLES */
+
 h1,
 h2,
 h3,
@@ -40,4 +42,122 @@ li {
 	font-family: "Playfair Display", serif;
 	font-weight: 400;
 	letter-spacing: -0.02em;
+}
+
+.heading-1 {
+	font-size: 10vw;
+	font-weight: 500;
+	@include breakpoint(md) {
+		font-size: 6.475vw;
+	}
+	@include breakpoint(xxl) {
+		font-size: 6.3888888888888vw;
+	}
+}
+
+.heading-2 {
+	font-size: 10vw;
+	font-weight: 500;
+	@include breakpoint(md) {
+		font-size: 6.475vw;
+	}
+	@include breakpoint(xl) {
+		font-size: 5.46875vw;
+	}
+	@include breakpoint(xxl) {
+		font-size: 4.861111111111112vw;
+	}
+}
+
+.heading-3 {
+	font-size: 7.5vw;
+	font-weight: 500;
+	@include breakpoint(md) {
+		font-size: 4.1666666666666vw;
+	}
+	@include breakpoint(lg) {
+		font-size: 4.00390625vw;
+	}
+	@include breakpoint(xl) {
+		font-size: 3.20312499999996vw;
+	}
+	@include breakpoint(xxl) {
+		font-size: 3.75vw;
+	}
+}
+
+.sub-heading-1 {
+	font-size: 4.375vw;
+	text-transform: uppercase;
+	@include breakpoint(sm) {
+		font-size: 3.75vw;
+	}
+	@include breakpoint(md) {
+		font-size: 2.158vw;
+	}
+	@include breakpoint(xl) {
+		font-size: 1.875vw;
+	}
+	@include breakpoint(xxl) {
+		font-size: 1.666666667vw;
+	}
+}
+
+.sub-heading-2 {
+	font-size: 3.75vw;
+	text-transform: uppercase;
+	@include breakpoint(sm) {
+		font-size: 3.125vw;
+	}
+	@include breakpoint(md) {
+		font-size: 2.08333333333333vw;
+	}
+	@include breakpoint(lg) {
+		font-size: 1.5625vw;
+	}
+	@include breakpoint(xl) {
+		font-size: 1.09375vw;
+	}
+	@include breakpoint(xxl) {
+		font-size: 1.11111111111112vw;
+	}
+}
+
+.body-paragraph {
+	font-size: 5vw;
+	@include breakpoint(sm) {
+		font-size: 4.166666666666vw;
+	}
+	@include breakpoint(md) {
+		font-size: 2.604166666667vw;
+	}
+	@include breakpoint(lg) {
+		font-size: 1.953125vw;
+	}
+	@include breakpoint(xl) {
+		font-size: 1.7187500000000002vw;
+	}
+	@include breakpoint(xxl) {
+		font-size: 1.666666666667vw;
+	}
+}
+
+.body-paragraph--small {
+	font-size: 5vw;
+	// font-size: 1.6rem;
+	@include breakpoint(sm) {
+		font-size: 4.166666666666vw;
+	}
+	@include breakpoint(md) {
+		font-size: 2.604166666667vw;
+	}
+	@include breakpoint(lg) {
+		font-size: 1.953125vw;
+	}
+	@include breakpoint(xl) {
+		font-size: 1.40625vw;
+	}
+	@include breakpoint(xxl) {
+		font-size: 1.38888888888888vw;
+	}
 }

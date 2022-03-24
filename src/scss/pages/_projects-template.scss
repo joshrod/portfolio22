@@ -1,35 +1,8 @@
 .project-header {
-	padding: $sm;
+	@include container-small;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	@include breakpoint(md) {
-		padding: $md;
-	}
-	@include breakpoint(xl) {
-		padding: 1.5625vmax $xl;
-	}
-	@include breakpoint(xxl) {
-		padding: 1.38888888888vw $xxl;
-	}
-
-	.project-title {
-		h1 {
-			font-size: 10vw;
-			font-weight: 500;
-			letter-spacing: -0.04em;
-			@include breakpoint(md) {
-				font-size: 6.475vw;
-			}
-			@include breakpoint(xl) {
-				font-size: 5.46875vw;
-			}
-			@include breakpoint(xxl) {
-				// font-size: 6.3888888888888vw;
-				font-size: 4.861111111111112vw;
-			}
-		}
-	}
 
 	.back-to-main {
 		display: flex;
@@ -53,24 +26,8 @@
 			}
 		}
 
-		> h3 {
-			font-size: 7.5vw;
-			font-weight: 500;
-			letter-spacing: -0.04em;
+		.heading-3 {
 			line-height: 0.9;
-			@include breakpoint(md) {
-				// font-size: 6.475vw;
-				font-size: 4.1666666666666vw;
-			}
-			@include breakpoint(lg) {
-				font-size: 4.00390625vw;
-			}
-			@include breakpoint(xl) {
-				font-size: 3.20312499999996vw;
-			}
-			@include breakpoint(xxl) {
-				font-size: 3.75vw;
-			}
 		}
 	}
 }
@@ -94,19 +51,20 @@
 }
 
 .project-quick-hits {
-	padding: $sm $sm 8.680555555555555vmax;
+	@include container-small;
+	padding-bottom: $section-sm-y;
 	display: flex;
 	flex-direction: column;
 	@include breakpoint(md) {
-		padding: $md $md 7.8125vmax;
+		padding-bottom: $section-lg-y;
 		flex-direction: row;
 		justify-content: space-between;
 	}
 	@include breakpoint(xl) {
-		padding: 1.5625vmax $xl 5.859375vw;
+		padding-bottom: $section-xl-y;
 	}
 	@include breakpoint(xxl) {
-		padding: 1.38888888888vmax $xxl 5.5555555555vmax;
+		padding-bottom: $section-xxl-y;
 	}
 
 	> div {
@@ -117,71 +75,56 @@
 		&:last-of-type {
 			margin-bottom: 0;
 		}
-		> h5 {
-			font-size: 3.75vw;
-			// font-size: 1.2rem;
-			text-transform: uppercase;
-			@include breakpoint(sm) {
-				font-size: 3.125vw;
-			}
-			@include breakpoint(md) {
-				font-size: 2.08333333333333vw;
-			}
-			@include breakpoint(lg) {
-				font-size: 1.5625vw;
-			}
-			@include breakpoint(xl) {
-				font-size: 1.25vw;
-			}
-			@include breakpoint(xxl) {
-				// font-size: 0.972222222222vw;
-				font-size: 1.11111111111112vw;
-			}
-		}
-
-		> p {
-			font-size: 5vw;
-			// font-size: 1.6rem;
-			@include breakpoint(sm) {
-				font-size: 4.166666666666vw;
-			}
-			@include breakpoint(md) {
-				// font-size: 2.8645833333333vw;
-				font-size: 2.604166666667vw;
-			}
-			@include breakpoint(lg) {
-				font-size: 1.953125vw;
-			}
-			@include breakpoint(xl) {
-				font-size: 1.5625vw;
-			}
-			@include breakpoint(xxl) {
-				// font-size: 1.666666666667vw;
-				font-size: 1.38888888888888vw;
-			}
-		}
 	}
 }
 
 .project-synopsis {
-	padding: 8.680555555555555vmax $sm;
+	@include container-sectional;
 	@include breakpoint(md) {
-		padding: 7.8125vmax $md;
 		display: flex;
 		justify-content: space-between;
 	}
-	@include breakpoint(xl) {
-		padding: 5.859375vw $xl;
-	}
-	@include breakpoint(xxl) {
-		padding: 5.5555555555555vmax $xxl;
+	&.mosaic-enabled {
+		@include breakpoint(md) {
+			align-items: center;
+		}
+
+		.project-overview {
+			margin-bottom: 0;
+		}
+
+		.project-mosaic {
+			display: none;
+			@include breakpoint(md) {
+				display: block;
+				height: 45vmax;
+				flex: 0 0 47.3958333333%;
+			}
+			@include breakpoint(lg) {
+				height: 39.0625vmax;
+			}
+			@include breakpoint(xl) {
+				flex: 0 0 50%;
+				height: 39.0625vmax;
+			}
+			@include breakpoint(xxl) {
+				height: 41.66666666666667vmax;
+			}
+
+			> .img-responsive {
+				@include breakpoint(md) {
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+				}
+			}
+		}
 	}
 
 	.project-overview {
 		margin-bottom: 17.3611111111111vmax;
 		@include breakpoint(md) {
 			margin-bottom: 0;
-			// flex: 0 0 37.5%;
 			flex: 0 0 47.3958333333%;
 		}
 		@include breakpoint(xl) {
@@ -191,48 +134,21 @@
 			flex: 0 0 37.5%;
 		}
 
-		> h1 {
-			font-size: 7.5vw;
-			font-weight: 500;
-			letter-spacing: -0.04em;
+		> .heading-3 {
 			line-height: 0.9;
 			margin-bottom: 4.34027777778vmax;
-			@include breakpoint(md) {
-				// font-size: 6.475vw;
-				font-size: 4.1666666666666vw;
-			}
-			@include breakpoint(lg) {
-				font-size: 4.00390625vw;
-			}
 			@include breakpoint(xl) {
-				font-size: 3.20312499999996vw;
 				margin-bottom: 3.125vmax;
 			}
 			@include breakpoint(xxl) {
-				font-size: 3.75vw;
 				margin-bottom: 3.47222222222222223vmax;
 			}
 		}
 
-		> p {
-			font-size: 5vw;
+		> .body-paragraph {
 			margin-bottom: 4.34027777777778vmax;
-			@include breakpoint(sm) {
-				font-size: 4.166666666666vw;
-			}
-			@include breakpoint(md) {
-				// font-size: 2.8645833333333vw;
-				font-size: 2.604166666667vw;
-			}
 			@include breakpoint(lg) {
-				font-size: 1.953125vw;
 				margin-bottom: 3.125vmax;
-			}
-			@include breakpoint(xl) {
-				font-size: 1.5625vw;
-			}
-			@include breakpoint(xxl) {
-				font-size: 1.666666666667vw;
 			}
 		}
 
@@ -241,25 +157,9 @@
 			align-items: center;
 			cursor: pointer;
 
-			> h1 {
-				font-size: 7.5vw;
-				font-weight: 500;
-				letter-spacing: -0.04em;
+			> .heading-3 {
 				line-height: 0.9;
 				margin-right: 0.8rem;
-				@include breakpoint(md) {
-					// font-size: 6.475vw;
-					font-size: 4.1666666666666vw;
-				}
-				@include breakpoint(lg) {
-					font-size: 4.00390625vw;
-				}
-				@include breakpoint(xl) {
-					font-size: 3.20312499999996vw;
-				}
-				@include breakpoint(xxl) {
-					font-size: 3.75vw;
-				}
 			}
 
 			.diagonal-arrow {
@@ -276,33 +176,20 @@
 
 	.project-awards {
 		@include breakpoint(md) {
-			// flex: 0 0 50%;
 			flex: 0 0 47.3958333333%;
 		}
 		@include breakpoint(xl) {
 			flex: 0 0 50%;
 		}
 
-		> h1 {
-			font-size: 7.5vw;
-			font-weight: 500;
-			letter-spacing: -0.04em;
+		> .heading-3 {
 			line-height: 0.9;
 			margin-right: 0.8rem;
 			margin-bottom: 4.34027777777778vmax;
-			@include breakpoint(md) {
-				// font-size: 6.475vw;
-				font-size: 4.1666666666666vw;
-			}
-			@include breakpoint(lg) {
-				font-size: 4.00390625vw;
-			}
 			@include breakpoint(xl) {
-				font-size: 3.20312499999996vw;
 				margin-bottom: 3.125vmax;
 			}
 			@include breakpoint(xxl) {
-				font-size: 3.75vw;
 				margin-bottom: 3.47222222222222223vmax;
 			}
 		}
@@ -315,19 +202,9 @@
 			}
 
 			.awards-table-headings {
-				> h3 {
-					font-size: 3.75vw;
+				> .sub-heading-2 {
 					line-height: 1.55;
-					// font-size: 1.2rem;
-					text-transform: uppercase;
-					@include breakpoint(sm) {
-						font-size: 3.125vw;
-					}
-					@include breakpoint(md) {
-						font-size: 2.08333333333333vw;
-					}
 					@include breakpoint(lg) {
-						font-size: 1.5625vw;
 						line-height: 1.4;
 					}
 				}
@@ -339,23 +216,6 @@
 					&:last-of-type {
 						margin-bottom: 0;
 					}
-
-					> p {
-						font-size: 5vw;
-						@include breakpoint(sm) {
-							font-size: 4.166666666666vw;
-						}
-						@include breakpoint(md) {
-							// font-size: 2.8645833333333vw;
-							font-size: 2.604166666667vw;
-						}
-						@include breakpoint(lg) {
-							font-size: 1.953125vw;
-						}
-						@include breakpoint(xl) {
-							font-size: 1.5625vw;
-						}
-					}
 				}
 			}
 		}
@@ -365,28 +225,26 @@
 			@include breakpoint(xl) {
 				display: grid;
 				grid-template-columns: repeat(3, 1fr);
-				// row-gap: 1.5625vmax;
+				column-gap: 1.5625vw;
+			}
+			@include breakpoint(xxl) {
+				column-gap: 1.3888888888888888vw;
 			}
 
-			> h3 {
+			> .sub-heading-2 {
 				@include breakpoint(xl) {
-					font-size: 1.25vw;
-					text-transform: uppercase;
 					margin-bottom: 1.5625vmax;
 				}
 				@include breakpoint(xxl) {
-					font-size: 1.11111111111112vw;
 					margin-bottom: 1.3888888888888vmax;
 				}
 			}
 
-			> p {
+			> .body-paragraph {
 				@include breakpoint(xl) {
-					font-size: 1.5625vw;
 					margin-bottom: 3.90625vmax;
 				}
 				@include breakpoint(xxl) {
-					font-size: 1.666666666667vw;
 					margin-bottom: 3.47222222222222223vmax;
 				}
 			}
@@ -395,16 +253,7 @@
 }
 
 .project-images {
-	padding: 8.680555555555555vmax $sm;
-	@include breakpoint(md) {
-		padding: 7.8125vmax $md;
-	}
-	@include breakpoint(xl) {
-		padding: 5.859375vw $xl;
-	}
-	@include breakpoint(xxl) {
-		padding: 5.5555555555555vmax $xxl;
-	}
+	@include container-sectional;
 
 	.project-desktop-images {
 		margin-bottom: 13.888888888888vmax;
@@ -431,6 +280,10 @@
 			}
 			@include breakpoint(xl) {
 				width: 75%;
+				margin-bottom: 6.640625vmax;
+			}
+			@include breakpoint(xxl) {
+				margin-bottom: 6.9444444444444445vmax;
 			}
 		}
 	}
@@ -472,16 +325,7 @@
 }
 
 .next-project {
-	padding: $sm $sm 8.680555555555555vmax;
-	@include breakpoint(md) {
-		padding: 7.8125vmax $md;
-	}
-	@include breakpoint(xl) {
-		padding: 5.859375vw $xl;
-	}
-	@include breakpoint(xxl) {
-		padding: 5.5555555555555vmax $xxl;
-	}
+	@include container-sectional;
 
 	.project {
 		@include breakpoint(md) {

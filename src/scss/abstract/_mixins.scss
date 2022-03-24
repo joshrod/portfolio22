@@ -6,6 +6,35 @@
 	}
 }
 
+// Container Requiring Sectional Padding
+@mixin container-sectional {
+	padding: $section-sm-y $sm-x;
+	@include breakpoint(md) {
+		padding: $section-lg-y $md-x;
+	}
+	@include breakpoint(xl) {
+		padding: $section-xl-y $xl-x;
+	}
+	@include breakpoint(xxl) {
+		padding: $section-xxl-y $xxl-x;
+	}
+}
+
+// Container Requiring Normal Padding
+@mixin container-small {
+	padding: $sm-y $sm-x;
+	@include breakpoint(md) {
+		padding: $md-y $md-x;
+	}
+	@include breakpoint(xl) {
+		padding: $xl-y $xl-x;
+	}
+	@include breakpoint(xxl) {
+		padding: $xxl-y $xxl-x;
+	}
+}
+// Breakpoint Mixins
+
 @mixin breakpoint($point) {
 	@if $point == xxl {
 		@media only screen and (min-width: 1440px) {

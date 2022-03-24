@@ -1,10 +1,10 @@
 header.home-header {
-	padding: $sm;
+	padding: $sm-y $sm-x;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	@include breakpoint(md) {
-		padding: $md;
+		padding: $md-y $md-x;
 	}
 	@include breakpoint(lg) {
 		display: none;
