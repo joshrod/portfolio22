@@ -2244,4 +2244,136 @@ header.home-header .menu-links .navlink:first-of-type {
             align-items: flex-start;
   }
 }
+
+/* ANTIMATIONS FOLDER */
+#black-circle-canvas {
+  position: fixed;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.hero {
+  display: block;
+}
+
+.hero .hero-animation-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 100%;
+}
+
+.hero .hero-animation-container .hero-circle {
+  right: 0;
+  bottom: 0;
+}
+
+.hero-firstname,
+.hero-lastname,
+.hero-jobtitle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+  font-size: 0;
+  color: #141c28;
+}
+
+.hero-firstname.display-text .split-text,
+.hero-lastname.display-text .split-text,
+.hero-jobtitle.display-text .split-text {
+  letter-spacing: -0.02em;
+}
+
+.hero-firstname .split-text,
+.hero-lastname .split-text,
+.hero-jobtitle .split-text {
+  position: relative;
+  display: inline-block;
+  letter-spacing: -0.03em;
+}
+
+.hero-arrow-container {
+  width: 1.8rem;
+  display: block;
+  position: fixed;
+  right: 1.5rem;
+  bottom: 20.8333333vh;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 768px) {
+  .hero-arrow-container {
+    right: 3rem;
+    bottom: 9.765625vh;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .hero-arrow-container {
+    right: 2.92969vw;
+    bottom: 7.32064421vh;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .hero-arrow-container {
+    width: 1.875vw;
+    right: calc(2.08333vw + 5rem - .9625vw);
+  }
+}
+
+.about-paragraph {
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.about-paragraph .word-split {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.about-paragraph .word-split .inside-word-split {
+  position: relative;
+  display: inline-block;
+  letter-spacing: -0.04em;
+}
+
+.marquee-divider .top-marquee {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+
+.projects .project .project-img-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.projects .project .project-img-container .curtains-canvas {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.projects .project .project-img-container .curtains-plane {
+  width: 100%;
+  height: 100%;
+}
+
+.projects .project .project-img-container .curtains-plane img {
+  display: none;
+}
 /*# sourceMappingURL=main.css.map */
