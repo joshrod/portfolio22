@@ -40,8 +40,8 @@ window.addEventListener("load", () => {
 
     // set up our WebGL context and append the canvas to our wrapper
     const curtains = new Curtains({
-        container: "mcnay-canvas",
-        watchScroll: false, // no need to listen for the scroll in this example
+        container: "projects-canvas",
+        // watchScroll: false, // no need to listen for the scroll in this example
         pixelRatio: Math.min(1.5, window.devicePixelRatio) // limit pixel ratio for performance
     });
 
@@ -54,8 +54,11 @@ window.addEventListener("load", () => {
         curtains.restoreContext();
     });
 
-    // get our plane element
+    const planes = [];
+
+    // get our plane elements
     const planeElements = document.getElementsByClassName("curtains-plane");
+    console.log(planeElements);
 
 
     const vs = `
@@ -149,45 +152,55 @@ window.addEventListener("load", () => {
 
     // insert my code here
     for (let i = 0; i < planeElements.length; i++) {
-        const plane = planeElements[i];
+        // const plane = planeElements[i];
 
-        const simplePlane = new Plane(curtains, plane, params);
+        // const simplePlane = new Plane(curtains, plane, params);
+
+        planes.push(new Plane(curtains, planeElements[i], params));
+
+        handlePlanes(i);
+
+    }
+
+    // handle the plane
+    function handlePlanes(index) {
+        const plane = planes[index];
+
         // if there has been an error during init, simplePlane will be null
-        simplePlane.onReady(() => {
+        plane.onReady(() => {
             // set a fov of 35 to reduce perspective (we could have used the fov init parameter)
-            simplePlane.setPerspective(35);
+            plane.setPerspective(35);
 
             // apply a little effect once everything is ready
-            deltas.max = 2;
+            deltas.max = 3;
 
-            // now that our plane is ready we can listen to mouse move event
-            const wrapper = document.getElementsByClassName('project-img-container')[i];
+            const wrapper = planeElements[index];
             console.log(wrapper);
 
             wrapper.addEventListener("mousemove", (e) => {
-                handleMovement(e, simplePlane);
+                handleMovement(e, plane);
             });
 
             wrapper.addEventListener("touchmove", (e) => {
-                handleMovement(e, simplePlane);
+                handleMovement(e, plane);
             }, {
                 passive: true
             });
 
         }).onRender(() => {
             // increment our time uniform
-            simplePlane.uniforms.time.value++;
+            plane.uniforms.time.value++;
 
             // decrease both deltas by damping : if the user doesn't move the mouse, effect will fade away
             deltas.applied += (deltas.max - deltas.applied) * 0.02;
             deltas.max += (0 - deltas.max) * 0.01;
 
             // send the new mouse move strength value
-            simplePlane.uniforms.mouseMoveStrength.value = deltas.applied;
+            plane.uniforms.mouseMoveStrength.value = deltas.applied;
 
         }).onAfterResize(() => {
-            const planeBoundingRect = simplePlane.getBoundingRect();
-            simplePlane.uniforms.resolution.value = [planeBoundingRect.width, planeBoundingRect.height];
+            const planeBoundingRect = plane.getBoundingRect();
+            plane.uniforms.resolution.value = [planeBoundingRect.width, planeBoundingRect.height];
         }).onError(() => {
             // we will add a class to the document body to display original images
             document.body.classList.add("no-curtains");
@@ -217,7 +230,7 @@ window.addEventListener("load", () => {
         );
 
         // convert our mouse/touch position to coordinates relative to the vertices of the plane and update our uniform
-        plane.uniforms.mousePosition.value = plane.mouseToPlaneCoords(mousePosition);
+        plane.uniforms.mousePosition.value.copy(plane.mouseToPlaneCoords(mousePosition));
 
         // calculate the mouse move strength
         if (mouseLastPosition.x && mouseLastPosition.y) {

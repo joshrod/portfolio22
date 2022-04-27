@@ -9,7 +9,7 @@ let vh = window.innerHeight;
 /* CIRCLE EXPANSION ANIMATION */
 
 // Set The Canvas
-const circleCanvas = document.getElementById('black-circle-canvas');
+const circleCanvas = document.getElementById('gray-circle-canvas');
 circleCanvas.width = vw;
 circleCanvas.height = vh;
 

@@ -2246,11 +2246,20 @@ header.home-header .menu-links .navlink:first-of-type {
 }
 
 /* ANTIMATIONS FOLDER */
-#black-circle-canvas {
+#gray-circle-canvas {
   position: fixed;
   pointer-events: none;
   top: 0;
   left: 0;
+  z-index: -1;
+}
+
+#projects-canvas {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 100vh;
   z-index: -1;
 }
 
