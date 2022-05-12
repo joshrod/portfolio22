@@ -1,32 +1,3 @@
-// // wait for everything to be ready
-// window.addEventListener("load", () => {
-//     // set up our WebGL context and append the canvas to our wrapper
-//     const curtains = new Curtains({
-//         container: "mcnay-canvas",
-//         watchScroll: false
-//     });
-//     // get our plane element
-//     const planeElement = document.getElementsByClassName("mcnay-plane")[0];
-//     // set our initial parameters (basic uniforms)
-//     const params = {
-//         vertexShaderID: "plane-vs", // our vertex shader ID
-//         fragmentShaderID: "plane-fs", // our fragment shader ID
-//         uniforms: {
-//             time: {
-//                 name: "uTime", // uniform name that will be passed to our shaders
-//                 type: "1f", // this means our uniform is a float
-//                 value: 0,
-//             },
-//         },
-//     };
-//     // create our plane using our curtains object, the HTML element and the parameters
-//     const plane = new Plane(curtains, planeElement, params);
-//     plane.onRender(() => {
-//         // use the onRender method of our plane fired at each requestAnimationFrame call
-//         plane.uniforms.time.value++; // update our time uniform value
-//     });
-// });
-
 window.addEventListener("load", () => {
     // track the mouse positions to send it to the shaders
     const mousePosition = new Vec2();
@@ -42,7 +13,47 @@ window.addEventListener("load", () => {
     const curtains = new Curtains({
         container: "projects-canvas",
         // watchScroll: false, // no need to listen for the scroll in this example
-        pixelRatio: Math.min(1.5, window.devicePixelRatio) // limit pixel ratio for performance
+        pixelRatio: Math.min(1.5, window.devicePixelRatio), // limit pixel ratio for performance
+        autoRender: false,
+
+    });
+
+    curtains.onRender(() => {
+        // update our planes deformation
+        // increase/decrease the effect
+        scrollEffect = curtains.lerp(scrollEffect, 0, 0.075);
+    })
+
+    curtains.onScroll(() => {
+        const scrollDelta = curtains.getScrollDeltas();
+
+        // invert value for the effect
+        scrollDelta.y = -scrollDelta.y;
+
+        // threshold
+        if (scrollDelta.y > 60) {
+            scrollDelta.y = 60;
+        }
+        else if (scrollDelta.y < -60) {
+            scrollDelta.y = -60;
+        }
+
+        if (Math.abs(scrollDelta.y) > Math.abs(scrollEffect)) {
+            scrollEffect = curtains.lerp(scrollEffect, scrollDelta.y, 0.5);
+        }
+
+        // // update the plane positions during scroll
+        // for (let i = 0; i < planes.length; i++) {
+        //     // apply additional translation, scale and rotation
+        //     applyPlanesParallax(plane);
+        //     deltas.max = 1.75;
+        // }
+
+        planes.forEach((plane) => {
+            applyPlanesParallax(plane);
+            deltas.max = 1.15;
+        })
+
     });
 
     // handling errors
@@ -54,11 +65,17 @@ window.addEventListener("load", () => {
         curtains.restoreContext();
     });
 
+    // use gsap ticker to render our scene
+    // gsap ticker handles different monitor refresh rates
+    // besides for performance we'll want to have only one request animation frame loop running
+    gsap.ticker.add(curtains.render.bind(curtains));
+
+
     const planes = [];
+    let scrollEffect = 0;
 
     // get our plane elements
     const planeElements = document.getElementsByClassName("curtains-plane");
-    console.log(planeElements);
 
 
     const vs = `
@@ -78,8 +95,11 @@ window.addEventListener("load", () => {
         uniform vec2 uResolution;
         uniform vec2 uMousePosition;
         uniform float uMouseMoveStrength;
+        uniform float uTransition;
         void main() {
             vec3 vertexPosition = aVertexPosition;
+            // convert uTransition from [0,1] to [0,1,0]
+            float transition = 1.0 - abs((uTransition * 2.0) - 1.0);
             // get the distance between our vertex and the mouse position
             float distanceFromMouse = distance(uMousePosition, vec2(vertexPosition.x, vertexPosition.y));
             // calculate our wave effect
@@ -134,6 +154,11 @@ window.addEventListener("load", () => {
                 type: "1f",
                 value: 0,
             },
+            fullscreenTransition: {
+                name: "uTransition",
+                type: "1f",
+                value: 0,
+            },
             mousePosition: { // our mouse position
                 name: "uMousePosition",
                 type: "2f", // again an array of floats
@@ -141,6 +166,11 @@ window.addEventListener("load", () => {
             },
             mouseMoveStrength: { // the mouse move strength
                 name: "uMouseMoveStrength",
+                type: "1f",
+                value: 0,
+            },
+            scrollEffect: {
+                name: "uScrollEffect",
                 type: "1f",
                 value: 0,
             }
@@ -152,9 +182,6 @@ window.addEventListener("load", () => {
 
     // insert my code here
     for (let i = 0; i < planeElements.length; i++) {
-        // const plane = planeElements[i];
-
-        // const simplePlane = new Plane(curtains, plane, params);
 
         planes.push(new Plane(curtains, planeElements[i], params));
 
@@ -175,7 +202,11 @@ window.addEventListener("load", () => {
             deltas.max = 3;
 
             const wrapper = planeElements[index];
-            console.log(wrapper);
+
+            plane.textures[0].setScale(new Vec2(1.25, 1.25));
+
+            // apply parallax on load
+            applyPlanesParallax(plane);
 
             wrapper.addEventListener("mousemove", (e) => {
                 handleMovement(e, plane);
@@ -186,6 +217,10 @@ window.addEventListener("load", () => {
             }, {
                 passive: true
             });
+
+            // plane.htmlElement.addEventListener("click", (e) => {
+            //     onPlaneClick(e, plane);
+            // });
 
         }).onRender(() => {
             // increment our time uniform
@@ -198,9 +233,39 @@ window.addEventListener("load", () => {
             // send the new mouse move strength value
             plane.uniforms.mouseMoveStrength.value = deltas.applied;
 
+            // new way: we just have to change the rotation and scale properties directly!
+            // apply the rotation
+            // plane.rotation.z = Math.abs(scrollEffect) / 750;
+
+            // scale plane and its texture
+            // plane.scale.y = 1 + Math.abs(scrollEffect) / 300;
+            // plane.textures[0].scale.y = 1 + Math.abs(scrollEffect) / 150;
+
+            // update the uniform
+            plane.uniforms.scrollEffect.value = scrollEffect;
+
         }).onAfterResize(() => {
             const planeBoundingRect = plane.getBoundingRect();
             plane.uniforms.resolution.value = [planeBoundingRect.width, planeBoundingRect.height];
+
+            // if plane is displayed fullscreen, update its scale and translations
+            if (plane.userData.isFullscreen) {
+                const planeBoundingRect = plane.getBoundingRect();
+                const curtainBoundingRect = curtains.getBoundingRect();
+
+                plane.setScale(new Vec2(
+                    curtainBoundingRect.width / planeBoundingRect.width,
+                    curtainBoundingRect.height / planeBoundingRect.height
+                ));
+
+                plane.setRelativeTranslation(new Vec3(
+                    -1 * planeBoundingRect.left / curtains.pixelRatio,
+                    -1 * planeBoundingRect.top / curtains.pixelRatio,
+                    0
+                ));
+            }
+
+            applyPlanesParallax(plane);
         }).onError(() => {
             // we will add a class to the document body to display original images
             document.body.classList.add("no-curtains");
@@ -240,6 +305,125 @@ window.addEventListener("load", () => {
             if (delta >= deltas.max) {
                 deltas.max = delta;
             }
+        }
+    }
+
+    function applyPlanesParallax(plane) {
+        // calculate the parallax effect
+        // get our window size
+        const sceneBoundingRect = curtains.getBoundingRect();
+        // get our plane center coordinate
+        const planeBoundingRect = plane.getBoundingRect();
+        const planeOffsetTop = planeBoundingRect.top + planeBoundingRect.height / 2;
+        // get a float value based on window height (0 means the plane is centered)
+        const parallaxEffect = (planeOffsetTop - sceneBoundingRect.height / 2) / sceneBoundingRect.height;
+
+        // set texture offset
+        const texture = plane.textures[0];
+        texture.offset.y = (1 - texture.scale.y) * 0.5 * parallaxEffect;
+    }
+
+    /******** GALLERY ********/
+
+    const galleryState = {
+        fullscreenThumb: false,
+        openTween: null
+    }
+
+    function onPlaneClick(event, plane) {
+        // if no planes are already displayed fullscreen
+        if (!galleryState.fullscreenThumb) {
+            // set fullscreen state
+            galleryState.fullscreenThumb = true;
+            document.body.classList.add("is-fullscreen");
+
+            // flag this plane
+            plane.userData.isFullscreen = true;
+
+            // put plane in front
+            plane.setRenderOrder(1);
+
+            // start ripple effect from mouse position, and tween it to center
+            const startMousePosition = plane.mouseToPlaneCoords(mousePosition);
+            plane.uniforms.mousePosition.value.copy(startMousePosition);
+            plane.uniforms.time.value = 0;
+
+            // we'll be using bounding rect values to tween scale and translation values
+            const planeBoundingRect = plane.getBoundingRect();
+            const curtainBoundingRect = curtains.getBoundingRect();
+
+            // starting values
+            let animation = {
+                scaleX: 1,
+                scaleY: 1,
+                translationX: 0,
+                translationY: 0,
+                transition: 0,
+                textureScale: 1.25,
+                mouseX: startMousePosition.x,
+                mouseY: startMousePosition.y,
+            };
+
+
+            // create vectors only once and use them later on during tween onUpdate callback
+            const newScale = new Vec2();
+            const newTranslation = new Vec3();
+
+            // kill tween
+            if (galleryState.openTween) {
+                galleryState.openTween.kill();
+            }
+
+            // we want to take top left corner as our plane transform origin
+            plane.setTransformOrigin(newTranslation);
+
+            galleryState.openTween = gsap.to(animation, 2, {
+                scaleX: curtainBoundingRect.width / planeBoundingRect.width,
+                scaleY: curtainBoundingRect.height / planeBoundingRect.height,
+                translationX: -1 * planeBoundingRect.left / curtains.pixelRatio,
+                translationY: -1 * planeBoundingRect.top / curtains.pixelRatio,
+                transition: 1,
+                textureScale: 1,
+                mouseX: 0,
+                mouseY: 0,
+                ease: Power3.easeInOut,
+                onUpdate: function () {
+                    // plane scale
+                    newScale.set(animation.scaleX, animation.scaleY);
+                    plane.setScale(newScale);
+
+                    // plane translation
+                    newTranslation.set(animation.translationX, animation.translationY, 0);
+                    plane.setRelativeTranslation(newTranslation);
+
+                    // texture scale
+                    newScale.set(animation.textureScale, animation.textureScale);
+                    plane.textures[0].setScale(newScale);
+
+                    // transition value
+                    plane.uniforms.fullscreenTransition.value = animation.transition;
+
+                    // apply parallax to change texture offset
+                    applyPlanesParallax(plane);
+
+                    // tween mouse position back to center
+                    plane.uniforms.mousePosition.value.set(animation.mouseX, animation.mouseY);
+                },
+                onComplete: function () {
+                    // do not draw all other planes since animation is complete and they are hidden
+                    const nonClickedPlanes = curtains.planes.filter(el => el.uuid !== plane.uuid && el.type !== "PingPongPlane");
+
+                    nonClickedPlanes.forEach(el => {
+                        el.visible = false;
+                    });
+
+                    // display close button
+                    // galleryState.closeButtonEl.style.display = "inline-block";
+
+                    // clear tween
+                    galleryState.openTween = null;
+                }
+            });
         }
     }
 });

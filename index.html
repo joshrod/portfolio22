@@ -20,27 +20,9 @@
     <title>Joshua Isaiah | Front-End Developer</title>
 </head>
 
-<body>
+<body class="home">
 
     <!-- <div class="scroll-container"> -->
-
-    <header class="home-header">
-        <div class="logo-container">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 76 210.24">
-                <g data-name="Layer 2">
-                    <g data-name="Layer 7">
-                        <circle cx="55.25" cy="20.75" r="20.75" style="fill:#ff1744" />
-                        <path
-                            d="M76 153.56V59.3H35v53.26ZM35 137.74v1.08A26.09 26.09 0 0 1 8.91 164.9H0v45.34h23.53A55.43 55.43 0 0 0 72.24 175Z" />
-                    </g>
-                </g>
-            </svg>
-        </div>
-        <div class="menu-links">
-            <a class="navlink" href="javascript:void(0);">About</a>
-            <a class="navlink" href="javascript:void(0);">Projects</a>
-        </div>
-    </header>
 
     <main>
 
@@ -52,8 +34,18 @@
         <div id="projects-canvas"></div>
 
         <section class="hero">
-
             <div class="hero-animation-container">
+                <div class="logo-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 76 210.24">
+                        <g data-name="Layer 2">
+                            <g data-name="Layer 7">
+                                <circle cx="55.25" cy="20.75" r="20.75" style="fill:#ff1744" />
+                                <path
+                                    d="M76 153.56V59.3H35v53.26ZM35 137.74v1.08A26.09 26.09 0 0 1 8.91 164.9H0v45.34h23.53A55.43 55.43 0 0 0 72.24 175Z" />
+                            </g>
+                        </g>
+                    </svg>
+                </div>
                 <div class="hero-top">
                     <div class="hero-name">
                         <!-- <h1 class="hero-firstname">Joshua</h1>
@@ -135,15 +127,17 @@
                         </svg>
                     </a> -->
                 </div>
-                <a href="javascript:void(0);" class="hero-arrow-container">
-                    <svg id="hero-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 18">
-                        <g data-name="Layer 2">
-                            <path
-                                d="M8.25.75a.75.75 0 0 0-1.5 0V15.3L1.31 9.25a.76.76 0 0 0-1.06-.06.76.76 0 0 0-.06 1.06l6.75 7.5a.75.75 0 0 0 1.12 0l6.75-7.5a.75.75 0 0 0-1.12-1L8.25 15.3Z"
-                                style="fill:#141c28" data-name="Layer 1" />
-                        </g>
-                    </svg>
-                </a>
+                <div class="hero-arrow-placer">
+                    <a href="javascript:void(0);" class="hero-arrow-container">
+                        <svg id="hero-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 18">
+                            <g data-name="Layer 2">
+                                <path
+                                    d="M8.25.75a.75.75 0 0 0-1.5 0V15.3L1.31 9.25a.76.76 0 0 0-1.06-.06.76.76 0 0 0-.06 1.06l6.75 7.5a.75.75 0 0 0 1.12 0l6.75-7.5a.75.75 0 0 0-1.12-1L8.25 15.3Z"
+                                    style="fill:#141c28" data-name="Layer 1" />
+                            </g>
+                        </svg>
+                    </a>
+                </div>
             </div>
 
             <!-- <div class="hero-circle">
@@ -379,136 +373,194 @@
         </section>
 
         <section class="projects">
-            <a href="/mcnay.html" class="project">
+            <div class="project">
                 <div class="project-top-mobile">
-                    <h3>01 / 05</h3>
-                    <div class="project-award-winner">
-                        <div class="award-icon">
-                            <img class="img-responsive" src="/dist/img/diamond.svg" alt="Diamond Icon">
+                    <div class="project-text-container">
+                        <h3 class="project-text">01 / 05</h3>
+                    </div>
+                    <div class="project-text-container">
+                        <div class="project-award-winner project-text">
+                            <div class="award-icon">
+                                <img class="img-responsive" src="/dist/img/diamond.svg" alt="Diamond Icon">
+                            </div>
+                            <h3>Award-winning</h3>
                         </div>
-                        <h3>Award-winning</h3>
                     </div>
                 </div>
-                <div class="project-img-container" id="mcnay-image-container">
+                <a href="/mcnay.html" class="project-img-container">
                     <!-- <div id="mcnay-canvas" class="curtains-canvas"></div> -->
                     <div class="curtains-plane">
                         <img class="img-cover" src="/dist/img/mcnay/mcnay-front.jpg" crossorigin=""
                             data-sampler="simplePlaneTexture" alt="">
                     </div>
-                </div>
+                </a>
                 <div class="project-info">
                     <div class="project-info-desktop">
-                        <h3>01 / 05</h3>
-                        <div class="project-award-winner">
-                            <h3>Award-winning</h3>
-                            <div class="award-icon">
-                                <img src="/dist/img/diamond.svg" alt="Diamond Icon">
+                        <div class="project-text-container">
+                            <h3 class="project-text">01 / 05</h3>
+                        </div>
+                        <div class="project-text-container">
+                            <div class="project-award-winner project-text">
+                                <h3>Award-winning</h3>
+                                <div class="award-icon">
+                                    <img src="/dist/img/diamond.svg" alt="Diamond Icon">
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="project-info-bottom">
-                        <h1 class="project-title">McNay</h1>
-                        <h3 class="project-description">Website</h3>
-                        <h3 class="project-completion">2021</h3>
-                    </div>
-                </div>
-            </a>
-            <a href="/freetail.html" class="project">
-                <div class="project-top-mobile">
-                    <h3>02 / 05</h3>
-                    <div class="project-award-winner">
-                        <div class="award-icon">
-                            <img class="img-responsive" src="/dist/img/diamond.svg" alt="Diamond Icon">
+                        <div class="project-text-container">
+                            <h1 class="project-title project-text">McNay</h1>
                         </div>
-                        <h3>Award-winning</h3>
+                        <div class="project-text-container">
+                            <h3 class="project-description project-text">Website</h3>
+                        </div>
+                        <div class="project-text-container">
+                            <h3 class="project-completion project-text">2021</h3>
+                        </div>
                     </div>
                 </div>
-                <div class="project-img-container">
+            </div>
+            <div class="project">
+                <div class="project-top-mobile">
+                    <div class="project-text-container">
+                        <h3 class="project-text">02 / 05</h3>
+                    </div>
+                    <div class="project-text-container">
+                        <div class="project-award-winner project-text">
+                            <div class="award-icon">
+                                <img class="img-responsive" src="/dist/img/diamond.svg" alt="Diamond Icon">
+                            </div>
+                            <h3>Award-winning</h3>
+                        </div>
+                    </div>
+                </div>
+                <a href="/freetail.html" class="project-img-container">
                     <div class="curtains-plane">
                         <img class="img-cover" src="/dist/img/freetail/freetail_ltn.jpg" crossorigin=""
                             data-sampler="simplePlaneTexture" alt="">
                     </div>
-                </div>
+                </a>
                 <div class="project-info">
                     <div class="project-info-desktop">
-                        <h3>02 / 05</h3>
-                        <div class="project-award-winner">
-                            <h3>Award-winning</h3>
-                            <div class="award-icon">
-                                <img src="/dist/img/diamond.svg" alt="Diamond Icon">
+                        <div class="project-text-container">
+                            <h3 class="project-text">02 / 05</h3>
+                        </div>
+                        <div class="project-text-container">
+                            <div class="project-award-winner project-text">
+                                <h3>Award-winning</h3>
+                                <div class="award-icon">
+                                    <img src="/dist/img/diamond.svg" alt="Diamond Icon">
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="project-info-bottom">
-                        <h1 class="project-title">Freetail</h1>
-                        <h3 class="project-description">Website</h3>
-                        <h3 class="project-completion">2019</h3>
+                        <div class="project-text-container">
+                            <h1 class="project-title project-text">Freetail</h1>
+                        </div>
+                        <div class="project-text-container">
+                            <h3 class="project-description project-text">Website</h3>
+                        </div>
+                        <div class="project-text-container">
+                            <h3 class="project-completion project-text">2019</h3>
+                        </div>
                     </div>
                 </div>
-            </a>
-            <a href="/cym.html" class="project">
+            </div>
+            <div class="project">
                 <div class="project-top-mobile">
-                    <h3>03 / 05</h3>
+                    <div class="project-text-container">
+                        <h3 class="project-text">03 / 05</h3>
+                    </div>
                 </div>
-                <div class="project-img-container">
+                <a href="/cym.html" class="project-img-container">
                     <div class="curtains-plane">
                         <img class="img-cover" src="/dist/img/cym/cym_submission_bg_60.jpg" crossorigin=""
                             data-sampler="simplePlaneTexture" alt="">
                     </div>
-                </div>
+                </a>
                 <div class="project-info">
                     <div class="project-info-desktop">
-                        <h3>03 / 05</h3>
+                        <div class="project-text-container">
+                            <h3 class="project-text">03 / 05</h3>
+                        </div>
                     </div>
                     <div class="project-info-bottom">
-                        <h1 class="project-title">Young Minds</h1>
-                        <h3 class="project-description">Website</h3>
-                        <h3 class="project-completion">2022</h3>
+                        <div class="project-text-container">
+                            <h1 class="project-title project-text">Young Minds</h1>
+                        </div>
+                        <div class="project-text-container">
+                            <h3 class="project-description project-text">Website</h3>
+                        </div>
+                        <div class="project-text-container">
+                            <h3 class="project-completion project-text">2022</h3>
+                        </div>
                     </div>
                 </div>
-            </a>
-            <a href="/alamobowl.html" class="project">
+            </div>
+            <div class="project">
                 <div class="project-top-mobile">
-                    <h3>04 / 05</h3>
+                    <div class="project-text-container">
+                        <h3 class="project-text">04 / 05</h3>
+                    </div>
                 </div>
-                <div class="project-img-container">
+                <a href="/alamobowl.html" class="project-img-container">
                     <div class="curtains-plane">
                         <img class="img-cover" src="/dist/img/alamobowl/alamobowl-action2.jpg" crossorigin=""
                             data-sampler="simplePlaneTexture" alt="">
                     </div>
-                </div>
+                </a>
                 <div class="project-info">
                     <div class="project-info-desktop">
-                        <h3>04 / 05</h3>
+                        <div class="project-text-container">
+                            <h3 class="project-text">04 / 05</h3>
+                        </div>
                     </div>
                     <div class="project-info-bottom">
-                        <h1 class="project-title">Alamobowl</h1>
-                        <h3 class="project-description">Website</h3>
-                        <h3 class="project-completion">2019</h3>
+                        <div class="project-text-container">
+                            <h1 class="project-title project-text">Alamobowl</h1>
+                        </div>
+                        <div class="project-text-container">
+                            <h3 class="project-description project-text">Website</h3>
+                        </div>
+                        <div class="project-text-container">
+                            <h3 class="project-completion project-text">2019</h3>
+                        </div>
                     </div>
                 </div>
-            </a>
-            <a href="/electric.html" class="project">
+            </div>
+            <div class="project">
                 <div class="project-top-mobile">
-                    <h3>05 / 05</h3>
+                    <div class="project-text-container">
+                        <h3 class="project-text">05 / 05</h3>
+                    </div>
                 </div>
-                <div class="project-img-container">
+                <a href="/electric.html" class="project-img-container">
                     <div class="curtains-plane">
                         <img class="img-cover" src="/dist/img/electric/electric-front.jpg" crossorigin=""
                             data-sampler="simplePlaneTexture" alt="">
                     </div>
-                </div>
+                </a>
                 <div class="project-info">
                     <div class="project-info-desktop">
-                        <h3>05 / 05</h3>
+                        <div class="project-text-container">
+                            <h3 class="project-text">05 / 05</h3>
+                        </div>
                     </div>
                     <div class="project-info-bottom">
-                        <h1 class="project-title">Electric</h1>
-                        <h3 class="project-description">Website</h3>
-                        <h3 class="project-completion">2018</h3>
+                        <div class="project-text-container">
+                            <h1 class="project-title project-text">Electric</h1>
+                        </div>
+                        <div class="project-text-container">
+                            <h3 class="project-description project-text">Website</h3>
+                        </div>
+                        <div class="project-text-container">
+                            <h3 class="project-completion project-text">2018</h3>
+                        </div>
                     </div>
                 </div>
-            </a>
+            </div>
         </section>
 
         <!-- TEXT BREAK IDEA ONLY WORKS WITH ANIMATIONS ENABLED -->
@@ -520,12 +572,30 @@
         <section class="contact">
             <div class="contact-content">
                 <!-- <h1 class="contact-copy">Hit me up. You and I could make masterpieces together.</h1> -->
-                <h1 class="no-animations-heading">Let Me Help You<br><span class="display-text">Stand Out</span>
-                </h1>
-                <div class="no-animations-email">
+                <!-- <h1 class="no-animations-heading">Let Me Help You<br><span class="display-text">Stand Out</span>
+                </h1> -->
+                <!-- <div class="no-animations-email">
                     <a href="mailto:josh@joshuaisaiah.com" target="_blank" rel="noopener noreferrer"
                         class="email-header">josh<span class="red-text">@</span>joshuaisaiah<span
                             class="red-text">.</span>com</a>
+                </div> -->
+                <h1 class="contact-intro-heading">Let Me Help You. . .</h1>
+                <div class="contact-decorative-text-container">
+                    <h1 class="contact-decorative-text display-text">Stand</h1>
+                    <h1 class="contact-decorative-text display-text">Out</h1>
+                    <div class="contact-snippet-container">
+                        <h3 class="contact-snippet">You and I can make<br> masterpieces together</h3>
+                    </div>
+                    <div class="email-container">
+                        <a href="mailto:josh@joshuaisaiah.com" target="_blank" rel="noopener noreferrer"
+                            class="email-heading">josh<span class="red-text">@</span>joshuaisaiah<span
+                                class="red-text">.</span>com</a>
+                    </div>
+                </div>
+                <div class="copyright-container">
+                    <p class="copyright">
+                        Joshua Isaiah &copy;<span class="copyright-year"></span>
+                    </p>
                 </div>
                 <!-- <div class="contact-marquee">
                         <a href="javascript:void(0);" class="email-header">josh<span
@@ -549,67 +619,7 @@
 
     </main>
 
-    <footer>
-        <div class="bottom-footer">
-            <!-- <a href="javascript:void(0);" class="footer-link">LinkedIn</a> -->
-            <p>Joshua Isaiah ©2021</p>
-        </div>
-    </footer>
-
     <!-- </div> -->
-    <!-- vertex shader -->
-    <!-- <script id="plane-vs" type="x-shader/x-vertex">
-        precision mediump float;
-
-        // those are the mandatory attributes that the lib sets
-        attribute vec3 aVertexPosition;
-        attribute vec2 aTextureCoord;
-
-        // those are mandatory uniforms that the lib sets and that contain our model view and projection matrix
-        uniform mat4 uMVMatrix;
-        uniform mat4 uPMatrix;
-
-        // our texture matrix that will handle image cover
-        uniform mat4 uTextureMatrix0;
-
-        // pass your vertex and texture coords to the fragment shader
-        varying vec3 vVertexPosition;
-        varying vec2 vTextureCoord;
-
-        void main() {
-            vec3 vertexPosition = aVertexPosition;
-            gl_Position = uPMatrix * uMVMatrix * vec4(vertexPosition, 1.0);
-            
-            // set the varyings
-            // here we use our texture matrix to calculate the accurate texture coords
-            vTextureCoord = (uTextureMatrix0 * vec4(aTextureCoord, 0.0, 1.0)).xy;
-            vVertexPosition = vertexPosition;
-        }
-    </script> -->
-    <!-- fragment shader -->
-    <!-- <script id="plane-fs" type="x-shader/x-fragment">
-        precision mediump float;
-
-        // get our varyings
-        varying vec3 vVertexPosition;
-        varying vec2 vTextureCoord;
-
-        // the uniform we declared inside our javascript
-        uniform float uTime;
-
-        // our texture sampler (default name, to use a different name please refer to the documentation)
-        uniform sampler2D uSampler0;
-
-        void main() {
-            // get our texture coords from our varying
-            vec2 textureCoord = vTextureCoord;
-            // displace our pixels along the X axis based on our time uniform
-            // textures coords are ranging from 0.0 to 1.0 on both axis
-            textureCoord.x += sin(textureCoord.y * 25.0) * cos(textureCoord.x * 25.0) * (cos(uTime / 50.0)) / 25.0;
-            // map our texture with the texture matrix coords
-            gl_FragColor = texture2D(uSampler0, textureCoord);
-        }
-    </script> -->
 
 </body>
 

@@ -1,14 +1,11 @@
 .project {
 	display: block;
 	margin-bottom: 5rem;
-	cursor: pointer;
+
 	&:last-of-type {
 		margin-bottom: 0;
 	}
 	@include breakpoint(md) {
-		flex: 0 0 calc(50% - 1rem);
-	}
-	@include breakpoint(xl) {
 		margin-bottom: 15.625vmax;
 		display: flex;
 		flex-direction: row-reverse;
@@ -23,7 +20,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		@include breakpoint(xl) {
+		@include breakpoint(md) {
 			display: none;
 		}
 
@@ -33,9 +30,6 @@
 			letter-spacing: -0.04em;
 			@include breakpoint(sm) {
 				font-size: 3.75vw;
-			}
-			@include breakpoint(md) {
-				font-size: 2.158vw;
 			}
 		}
 
@@ -47,9 +41,6 @@
 				width: 3.75vw;
 				@include breakpoint(sm) {
 					width: 3.125vw;
-				}
-				@include breakpoint(md) {
-					width: 1.918vw;
 				}
 			}
 
@@ -64,33 +55,35 @@
 		width: 100%;
 		height: 50vmax;
 		margin-bottom: 1rem;
+		display: block;
+		cursor: pointer;
 		@include breakpoint(sm) {
 			height: 60vmax;
 		}
 		@include breakpoint(md) {
-			height: 35vmax;
+			height: 40vmax;
+			flex: 0 0 55%;
+			margin-bottom: 0;
 		}
 		@include breakpoint(xl) {
 			height: 85vmin;
-			flex: 0 0 55%;
-			margin-bottom: 0;
 		}
 	}
 
 	.project-info {
-		@include breakpoint(xl) {
+		@include breakpoint(md) {
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
 		}
+
 		.project-info-desktop {
 			display: none;
 			align-items: center;
 			justify-content: space-between;
-			@include breakpoint(xl) {
+			@include breakpoint(md) {
 				display: flex;
 				flex-direction: column;
-				// align-items: flex-end;
 				align-items: flex-start;
 			}
 
@@ -98,7 +91,6 @@
 				text-transform: uppercase;
 				letter-spacing: -0.04em;
 				font-size: 2.158vw;
-				// text-align: right;
 				@include breakpoint(xl) {
 					font-size: 1.875vw;
 				}
@@ -113,15 +105,26 @@
 
 			.project-award-winner {
 				display: flex;
-				align-items: flex-start;
+				align-items: center;
 
 				.award-icon {
-					height: 1.3888888888888vw;
-					margin-left: 0.390625vw;
+					@include breakpoint(md) {
+						height: 1.5825vw;
+						margin-left: 0.390625vw;
+					}
+					@include breakpoint(xl) {
+						height: 1.40625vw;
+					}
+					@include breakpoint(xxl) {
+						height: 1.25vw;
+						
+					}
+					
 
 					img {
 						height: 100%;
 						width: auto;
+						display: block;
 					}
 				}
 
@@ -138,10 +141,7 @@
 			letter-spacing: -0.04em;
 			margin-bottom: 0.5rem;
 			@include breakpoint(md) {
-				font-size: 6.475vw;
-			}
-			@include breakpoint(xl) {
-				// text-align: right;
+				font-size: 7.03125vw;
 			}
 			@include breakpoint(xxl) {
 				font-size: 6.3888888888888vw;
