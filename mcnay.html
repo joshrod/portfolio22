@@ -14,21 +14,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollToPlugin.min.js" defer></script>
-    <script src="/src/js/project.js" defer></script>
-    <title>Joshua Isaiah | Front-End Developer</title>
+    <!-- <script src="https://unpkg.com/@barba/core"></script> -->
+    <script src="/node_modules/curtainsjs/dist/curtains.umd.js" defer></script>
+    <script src="/src/js/webgl.js" defer></script>
+    <script src="/src/js/main.js" defer></script>
+    <!-- <script src="/src/js/project.js" defer></script> -->
+    <title>Joshua Isaiah | McNay</title>
 </head>
 
-<body>
+<body class="project-body" data-barba="wrapper">
 
-    <main>
+    <main data-barba="container">
 
         <canvas id="project-circle-canvas"></canvas>
+        <div id="projects-canvas"></div>
 
         <section class="project-header">
             <div class="project-title">
                 <h1 class="heading-2">McNay</h1>
             </div>
-            <a href="/" class="back-to-main">
+            <a href="javascript:history.back()" class="back-to-main">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 39 35" class="back-arrow">
                     <g data-name="Layer 2">
                         <path d="m16.44 35 3-3.12-12.23-12.2H39V15.3H7.23L19.48 3.12 16.44 0 0 17.5Z"
@@ -40,7 +45,8 @@
         </section>
 
         <section class="project-hero-container">
-            <img src="/dist/img/mcnay/mcnay-front.jpg" alt="">
+            <div class="project-hero-background" id="mcnay-background"></div>
+            <!-- <img src="/dist/img/mcnay/mcnay-front.jpg" alt=""> -->
         </section>
 
         <section class="project-quick-hits">
@@ -50,7 +56,7 @@
             </div>
             <div class="project-roles">
                 <h5 class="sub-heading-2">Roles:</h5>
-                <p class="body-paragraph--small">UI / UX</p>
+                <p class="body-paragraph--small">UI / UX Consulting</p>
                 <p class="body-paragraph--small">Front-End Development</p>
             </div>
             <div class="project-credits">
@@ -227,36 +233,53 @@
         </section>
 
         <section class="next-project">
-            <a href="/freetail.html" class="project">
+            <div class="project">
                 <div class="project-top-mobile">
-                    <h3>02 / 05</h3>
-                    <div class="project-award-winner">
-                        <div class="award-icon">
-                            <img class="img-responsive" src="/dist/img/diamond.svg" alt="Diamond Icon">
+                    <div class="project-text-container">
+                        <h3 class="project-text">02 / 05</h3>
+                    </div>
+                    <div class="project-text-container">
+                        <div class="project-award-winner project-text">
+                            <div class="award-icon">
+                                <img class="img-responsive" src="/dist/img/diamond.svg" alt="Diamond Icon">
+                            </div>
+                            <h3>Award-winning</h3>
                         </div>
-                        <h3>Award-winning</h3>
                     </div>
                 </div>
-                <div class="project-img-container">
-                    <img class="img-cover" src="/dist/img/freetail/freetail_ltn.jpg" alt="">
-                </div>
+                <a href="/freetail.html" class="project-img-container">
+                    <div class="curtains-plane">
+                        <img class="img-cover" src="/dist/img/freetail/freetail_ltn.jpg" crossorigin=""
+                            data-sampler="simplePlaneTexture" alt="">
+                    </div>
+                </a>
                 <div class="project-info">
                     <div class="project-info-desktop">
-                        <h3>02 / 05</h3>
-                        <div class="project-award-winner">
-                            <h3>Award-winning</h3>
-                            <div class="award-icon">
-                                <img src="/dist/img/diamond.svg" alt="Diamond Icon">
+                        <div class="project-text-container">
+                            <h3 class="project-text">02 / 05</h3>
+                        </div>
+                        <div class="project-text-container">
+                            <div class="project-award-winner project-text">
+                                <h3>Award-winning</h3>
+                                <div class="award-icon">
+                                    <img src="/dist/img/diamond.svg" alt="Diamond Icon">
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="project-info-bottom">
-                        <h1 class="project-title">Freetail</h1>
-                        <h3 class="project-description">Web Development</h3>
-                        <h3 class="project-completion">2019</h3>
+                        <div class="project-text-container">
+                            <h1 class="project-title project-text">Freetail</h1>
+                        </div>
+                        <div class="project-text-container">
+                            <h3 class="project-description project-text">Website</h3>
+                        </div>
+                        <div class="project-text-container">
+                            <h3 class="project-completion project-text">2019</h3>
+                        </div>
                     </div>
                 </div>
-            </a>
+            </div>
         </section>
 
 

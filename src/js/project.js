@@ -1,4 +1,4 @@
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+gsap.registerPlugin(ScrollTrigger);
 
 /********************* 
 * * GLOBAL VARS
@@ -9,6 +9,10 @@ let vh = window.innerHeight;
 ScrollTrigger.defaults({
     markers: true
 });
+
+/*********************
+* * PROJECT PAGE JAVASCRIPT
+*********************/
 
 /******** CIRCLE EXPANSION ANIMATION ********/
 
@@ -33,7 +37,9 @@ const circle = {
 
 let fillRadius = calcFillRadius() + 50;
 
+// Load Listener Required to Fully Load Images Before ScrollTrigger Calculates
 window.addEventListener('load', () => {
+
     // Create Timeline to Play Forward and Backward Easier
     const circleTl = gsap.timeline({
         scrollTrigger: {
@@ -51,8 +57,85 @@ window.addEventListener('load', () => {
         onUpdate: drawCircle
     });
 
+    // Set Things That Need to Be Faded In
+    gsap.set('.project-overview', {
+        autoAlpha: 0
+    });
+
+    if (document.querySelector('.project-awards')) {
+        gsap.set('.project-awards', {
+            autoAlpha: 0
+        });
+    } else {
+        gsap.set('.project-mosaic', {
+            autoAlpha: 0
+        });
+    }
+
+    /******** MARQUEE ANIMATIONS ********/
+
+    // Marquees Go In and Out on Scroll
+    gsap.utils.toArray('.marquee').forEach((marquee, index) => {
+        const wrapper = marquee.querySelector('.marquee-wrapper');
+        const [x, xEnd] = (index % 2) ? ['100%', (wrapper.scrollWidth - marquee.offsetWidth) * -1] : [wrapper.scrollWidth * -1, 0];
+        gsap.fromTo(wrapper, { x }, {
+            x: xEnd,
+            scrollTrigger: {
+                trigger: ".marquee-divider",
+                scrub: 0.2
+            }
+        });
+    });
+
+    /******** PROJECT PAGE SCROLLTRIGGERS BASED ON MEDIA QUERIES ********/
+
     ScrollTrigger.matchMedia({
         "(min-width: 1200px)": function () {
+
+            // Project Main Image Parallax on Desktop
+            let bg = document.querySelector('.project-hero-background');
+            bg.style.backgroundPosition = `50% 50%`;
+
+            gsap.to(bg, {
+                backgroundPosition: `50% 30%`,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: '.project-header',
+                    start: 'top top',
+                    end: '+=100%',
+                    scrub: true
+                }
+            });
+
+            // Fade In Overview
+            gsap.to('.project-overview', {
+                autoAlpha: 1,
+                scrollTrigger: {
+                    trigger: '.project-overview',
+                    start: 'top 60%'
+                }
+            });
+
+            // Fade In Awards or Mosaic
+            if (document.querySelector('.project-awards')) {
+                gsap.to('.project-awards', {
+                    autoAlpha: 1,
+                    scrollTrigger: {
+                        trigger: '.project-awards',
+                        start: 'top 60%'
+                    }
+                });
+            } else {
+                gsap.to('.project-mosaic', {
+                    autoAlpha: 1,
+                    scrollTrigger: {
+                        trigger: '.project-mosaic',
+                        start: 'top 60%'
+                    }
+                });
+            }
+
+            // Fade In and Translate Alternating Images
             gsap.utils.toArray('.project-desktop-image-container').forEach((container, index) => {
                 const xStart = (index % 2) ? 100 : -100;
                 gsap.fromTo(container,
@@ -72,6 +155,7 @@ window.addEventListener('load', () => {
                 );
             });
 
+            // Fade In and Translate Y Mobile Images
             gsap.utils.toArray('.project-mobile-image-container').forEach((container, index) => {
                 const image = container.querySelector('.img-responsive');
                 gsap.fromTo(container,
@@ -84,13 +168,58 @@ window.addEventListener('load', () => {
                         autoAlpha: 1,
                         scrollTrigger: {
                             trigger: image,
-                            start: 'top 65%'
+                            start: 'top 70%'
                         }
                     }
                 );
             });
         },
         "(max-width: 1199px)": function () {
+
+            // Project Main Image Parallax on Mobile
+            let bg = document.querySelector('.project-hero-background');
+            bg.style.backgroundPosition = `50% 50%`;
+
+            gsap.to(bg, {
+                backgroundPosition: `50% 30%`,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: '.project-header',
+                    start: 'top top',
+                    end: '+=75%',
+                    scrub: true
+                }
+            });
+
+            // Fade In Overview
+            gsap.to('.project-overview', {
+                autoAlpha: 1,
+                scrollTrigger: {
+                    trigger: '.project-overview',
+                    start: 'top 70%'
+                }
+            });
+
+            // Fade In Awards or Mosaic
+            if (document.querySelector('.project-awards')) {
+                gsap.to('.project-awards', {
+                    autoAlpha: 1,
+                    scrollTrigger: {
+                        trigger: '.project-awards',
+                        start: 'top 70%'
+                    }
+                });
+            } else {
+                gsap.to('.project-mosaic', {
+                    autoAlpha: 1,
+                    scrollTrigger: {
+                        trigger: '.project-mosaic',
+                        start: 'top 70%'
+                    }
+                });
+            }
+
+            // Fade In and Translate Alternating Images
             gsap.utils.toArray('.project-desktop-image-container').forEach((container, index) => {
                 const xStart = (index % 2) ? 100 : -100;
                 gsap.fromTo(container,
@@ -110,6 +239,7 @@ window.addEventListener('load', () => {
                 );
             });
 
+            // Fade In and Translate Y Mobile Images
             gsap.utils.toArray('.project-mobile-image-container').forEach((container, index) => {
                 const image = container.querySelector('.img-responsive');
                 gsap.fromTo(container,
@@ -132,8 +262,16 @@ window.addEventListener('load', () => {
 
 });
 
+/*********************
+* * GLOBAL WINDOW RESIZE EVENT LISTENER
+*********************/
+
 window.addEventListener('resize', () => {
     windowResize();
+
+    /******** PROJECT PAGE RESIZE JAVASCRIPT ********/
+
+    updateCircle();
 });
 
 

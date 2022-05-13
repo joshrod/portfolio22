@@ -12,6 +12,7 @@
 	right: 0;
 	left: 0;
 	height: 100vh;
+	pointer-events: none;
 	// z-index: -1;
 }
 
@@ -184,7 +185,6 @@
 }
 
 .contact {
-	// height: 100vh;
 	min-height: 100vh;
 	position: relative;
 	overflow: hidden;
@@ -196,8 +196,6 @@
 	@include breakpoint(xl) {
 		height: 100vh;
 	}
-
-	/* TODO: Add padding to mobile .contact so that there's more spacing between the projects and the animations */
 
 	.contact-intro-heading {
 		line-height: 1;
@@ -344,6 +342,64 @@
 
 /*********** PROJECTS PAGE ANIMATIONS **************/
 
+.project-header {
+	height: 12.152777777777777vmax;
+	padding-top: 0;
+	padding-bottom: 0;
+	@include breakpoint(md) {
+		height: 9.765625vmax;
+	}
+	@include breakpoint(xl) {
+		// height: 12rem;
+		height: 16.666666666666664vmin;
+	}
+	@include breakpoint(xxl) {
+		height: 13.333333333333334vmin;
+	}
+}
+
+.project-hero-container {
+	height: 65vmax;
+	position: relative;
+	@include breakpoint(xl) {
+		height: 83.33333333333333336vmin;
+	}
+	@include breakpoint(xxl) {
+		height: 86.66666666666666664vmin;
+	}
+
+	.project-hero-background {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+	}
+
+	#mcnay-background {
+		background-image: url('/dist/img/mcnay/mcnay-front.jpg');
+	}
+
+	#freetail-background {
+		background-image: url('/dist/img/freetail/freetail_ltn.jpg');
+	}
+
+	#cym-background {
+		background-image: url('/dist/img/cym/cym_submission_bg_60.jpg');
+	}
+
+	#alamobowl-background {
+		background-image: url('/dist/img/alamobowl/alamobowl-action2.jpg');
+	}
+
+	#electric-background {
+		background-image: url('/dist/img/electric/electric-front.jpg');
+	}
+}
+
 .project-images {
 	overflow: hidden;
 	
@@ -360,4 +416,28 @@
 			left: 0;
 		}
 	}
+}
+
+.next-project {
+	.project-img-container {
+			overflow: hidden;
+			position: relative;
+	
+			.curtains-canvas {
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+			}
+	
+			.curtains-plane {
+				width: 100%;
+				height: 100%;
+	
+				img {
+					display: none;
+				}
+			}
+		}
 }
