@@ -17,11 +17,11 @@ ScrollTrigger.defaults({
 /******** CIRCLE EXPANSION ANIMATION ********/
 
 // Set The Canvas
-const circleCanvas = document.getElementById('project-circle-canvas');
-circleCanvas.width = vw;
-circleCanvas.height = vh;
+const projectCircleCanvas = document.getElementById('project-circle-canvas');
+projectCircleCanvas.width = vw;
+projectCircleCanvas.height = vh;
 
-const canvasContext = circleCanvas.getContext('2d');
+const projectCanvasContext = projectCircleCanvas.getContext('2d');
 
 // Assign Starter Circle Parameters
 let starterRadius = 0;
@@ -29,7 +29,7 @@ let circleX = vw / 2;
 let circleY = vh / 2;
 
 // Make Circle Representable as an Animatable Object
-const circle = {
+const projectCircle = {
     radius: starterRadius,
     x: circleX,
     y: circleY
