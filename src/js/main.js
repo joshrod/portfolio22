@@ -369,21 +369,21 @@ function initHomeAnimations() {
         }
     });
 
+    /*********************
+    * * HOME WINDOW RESIZE EVENT LISTENER
+    *********************/
+
+    window.addEventListener('resize', () => {
+        windowResize(shapeCanvas);
+
+        updateCircle(shapeCanvasContext, homeCircle);
+
+        if (scrollY >= rectTlEnd) {
+            drawBgRectangle(shapeCanvasContext, homeCircle, bgRectangle);
+        }
+    });
+
 }
-
-/*********************
-* * HOME WINDOW RESIZE EVENT LISTENER
-*********************/
-
-window.addEventListener('resize', () => {
-    windowResize(shapeCanvas);
-
-    updateCircle(shapeCanvasContext, homeCircle);
-
-    if (scrollY >= rectTlEnd) {
-        drawBgRectangle(shapeCanvasContext, homeCircle, bgRectangle);
-    }
-});
 
 /*********************
 * * PROJECT PAGE JAVASCRIPT
@@ -636,19 +636,21 @@ function initProjectsAnimations() {
             });
         }
     });
+
+    window.addEventListener('resize', () => {
+        windowResize(projectCircleCanvas);
+
+        updateCircle(projectCanvasContext, projectCircle);
+    });
 }
 
-window.addEventListener('resize', () => {
-    windowResize(projectCircleCanvas);
-
-    updateCircle(projectCanvasContext, projectCircle);
-});
-
-/*********************
-* * CURTAINS JS IMPLEMENTATIONS
-*********************/
-
 window.addEventListener("load", () => {
+
+    if (document.body.classList.contains('home')) {
+        initHomeAnimations();
+    } else if (document.body.classList.contains('project-body')) {
+        initProjectsAnimations();
+    }
 
     /*********************
     * * BARBAJS JAVASCRIPT
@@ -716,6 +718,10 @@ window.addEventListener("load", () => {
     //         }
     //     }],
     // });
+
+    /*********************
+    * * CURTAINS JS IMPLEMENTATIONS
+    *********************/
 
     // track the mouse positions to send it to the shaders
     const mousePosition = new Vec2();
