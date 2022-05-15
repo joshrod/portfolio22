@@ -2194,7 +2194,9 @@ header.home-header .logo-container svg {
   position: fixed;
   pointer-events: none;
   top: 0;
+  right: 0;
   left: 0;
+  height: 100vh;
   z-index: -1;
 }
 
@@ -2204,6 +2206,10 @@ header.home-header .logo-container svg {
   right: 0;
   left: 0;
   height: 100vh;
+  pointer-events: none;
+}
+
+.is-transitioning {
   pointer-events: none;
 }
 

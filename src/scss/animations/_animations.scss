@@ -2,7 +2,9 @@
 	position: fixed;
 	pointer-events: none;
 	top: 0;
+	right: 0;
 	left: 0;
+	height: 100vh;
 	z-index: -1;
 }
 
@@ -14,6 +16,10 @@
 	height: 100vh;
 	pointer-events: none;
 	// z-index: -1;
+}
+
+.is-transitioning {
+	pointer-events: none;
 }
 
 .hero {

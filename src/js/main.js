@@ -20,11 +20,15 @@ try {
 var wheelOpt = supportsPassive ? { passive: false } : false;
 var wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
 
+ScrollTrigger.defaults({
+    // markers: true
+});
+
 /*********************
 * * HOME PAGE JAVASCRIPT
 *********************/
 
-if (document.body.classList.contains('home')) {
+function initHomeAnimations() {
 
     /******** HOME CIRCLE EXPANSION VARS ********/
 
@@ -134,9 +138,9 @@ if (document.body.classList.contains('home')) {
     const aboutTl = gsap.timeline({
         scrollTrigger: {
             trigger: ".about-me",
-            start: "top 65%"
+            start: "top 70%"
         }
-    })
+    });
 
     aboutTl.fromTo('.inside-word-split',
         {
@@ -365,27 +369,27 @@ if (document.body.classList.contains('home')) {
         }
     });
 
-    /*********************
-    * * HOME WINDOW RESIZE EVENT LISTENER
-    *********************/
-
-    window.addEventListener('resize', () => {
-        windowResize(shapeCanvas);
-
-        updateCircle(shapeCanvasContext, homeCircle);
-
-        if (scrollY >= rectTlEnd) {
-            drawBgRectangle(shapeCanvasContext, homeCircle, bgRectangle);
-        }
-    });
 }
+
+/*********************
+* * HOME WINDOW RESIZE EVENT LISTENER
+*********************/
+
+window.addEventListener('resize', () => {
+    windowResize(shapeCanvas);
+
+    updateCircle(shapeCanvasContext, homeCircle);
+
+    if (scrollY >= rectTlEnd) {
+        drawBgRectangle(shapeCanvasContext, homeCircle, bgRectangle);
+    }
+});
 
 /*********************
 * * PROJECT PAGE JAVASCRIPT
 *********************/
 
-if (document.body.classList.contains('project-body')) {
-
+function initProjectsAnimations() {
     /******** PROJECT CIRCLE EXPANSION VARS ********/
 
     // Set The Canvas
@@ -408,75 +412,80 @@ if (document.body.classList.contains('project-body')) {
         globalAlpha: 1,
     }
 
-    // Load Listener Required to Fully Load Images Before ScrollTrigger Calculates
-    window.addEventListener('load', () => {
+    // ! Load Listener Required to Fully Load Images Before ScrollTrigger Calculates
 
-        // Create Timeline to Play Forward and Backward Easier
-        const projectCircleTl = gsap.timeline({
-            scrollTrigger: {
-                trigger: ".project-header",
-                start: 'top top',
-                end: '+=100%',
-                scrub: 0.3,
-                invalidateOnRefresh: true
-            }
-        });
+    // Create Timeline to Play Forward and Backward Easier
+    const projectCircleTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".project-header",
+            start: 'top top',
+            end: '+=100%',
+            scrub: 0.3,
+            invalidateOnRefresh: true
+        }
+    });
 
-        // Timeline Animation (include onUpdate function here)
-        projectCircleTl.to(projectCircle, {
-            radius: () => calcFillRadius(vw, vh, projectCircle) + 50,
-            onUpdate: () => { drawCircle(projectCanvasContext, projectCircle) }
-        });
+    // Timeline Animation (include onUpdate function here)
+    projectCircleTl.to(projectCircle, {
+        radius: () => calcFillRadius(vw, vh, projectCircle) + 50,
+        onUpdate: () => { drawCircle(projectCanvasContext, projectCircle) }
+    });
 
-        // Set Things That Need to Be Faded In
+    // Set Things That Need to Be Faded In
+
+    if (document.querySelector('.project-awards')) {
         gsap.set('.project-overview', {
             autoAlpha: 0
         });
 
-        if (document.querySelector('.project-awards')) {
-            gsap.set('.project-awards', {
-                autoAlpha: 0
-            });
-        } else {
-            gsap.set('.project-mosaic', {
-                autoAlpha: 0
-            });
-        }
+        gsap.set('.project-awards', {
+            autoAlpha: 0
+        });
+    } else {
+        gsap.set('.project-synopsis', {
+            autoAlpha: 0
+        });
+    }
 
-        /******** MARQUEE ANIMATIONS ********/
+    /******** MARQUEE ANIMATIONS ********/
 
-        // Marquees Go In and Out on Scroll
-        gsap.utils.toArray('.marquee').forEach((marquee, index) => {
-            const wrapper = marquee.querySelector('.marquee-wrapper');
-            const [x, xEnd] = (index % 2) ? ['100%', (wrapper.scrollWidth - marquee.offsetWidth) * -1] : [wrapper.scrollWidth * -1, 0];
-            gsap.fromTo(wrapper, { x }, {
-                x: xEnd,
+    // Marquees Go In and Out on Scroll
+    gsap.utils.toArray('.marquee').forEach((marquee, index) => {
+        const wrapper = marquee.querySelector('.marquee-wrapper');
+        const [x, xEnd] = (index % 2) ? ['100%', (wrapper.scrollWidth - marquee.offsetWidth) * -1] : [wrapper.scrollWidth * -1, 0];
+        gsap.fromTo(wrapper, { x }, {
+            x: xEnd,
+            scrollTrigger: {
+                trigger: ".marquee-divider",
+                scrub: 0.2
+            }
+        });
+    });
+
+    /******** PROJECT PAGE SCROLLTRIGGERS BASED ON MEDIA QUERIES ********/
+
+    ScrollTrigger.matchMedia({
+        "(min-width: 1200px)": function () {
+
+            // Project Main Image Parallax on Desktop
+            let bg = document.querySelector('.project-hero-background');
+            bg.style.backgroundPosition = `50% 50%`;
+
+            gsap.to(bg, {
+                backgroundPosition: `50% 30%`,
+                ease: "none",
                 scrollTrigger: {
-                    trigger: ".marquee-divider",
-                    scrub: 0.2
+                    trigger: '.project-header',
+                    start: 'top top',
+                    end: '+=100%',
+                    scrub: true
                 }
             });
-        });
 
-        /******** PROJECT PAGE SCROLLTRIGGERS BASED ON MEDIA QUERIES ********/
 
-        ScrollTrigger.matchMedia({
-            "(min-width: 1200px)": function () {
 
-                // Project Main Image Parallax on Desktop
-                let bg = document.querySelector('.project-hero-background');
-                bg.style.backgroundPosition = `50% 50%`;
-
-                gsap.to(bg, {
-                    backgroundPosition: `50% 30%`,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: '.project-header',
-                        start: 'top top',
-                        end: '+=100%',
-                        scrub: true
-                    }
-                });
+            // Fade In Awards or Mosaic
+            if (document.querySelector('.project-awards')) {
 
                 // Fade In Overview
                 gsap.to('.project-overview', {
@@ -486,81 +495,81 @@ if (document.body.classList.contains('project-body')) {
                         start: 'top 60%'
                     }
                 });
-
-                // Fade In Awards or Mosaic
-                if (document.querySelector('.project-awards')) {
-                    gsap.to('.project-awards', {
-                        autoAlpha: 1,
-                        scrollTrigger: {
-                            trigger: '.project-awards',
-                            start: 'top 60%'
-                        }
-                    });
-                } else {
-                    gsap.to('.project-mosaic', {
-                        autoAlpha: 1,
-                        scrollTrigger: {
-                            trigger: '.project-mosaic',
-                            start: 'top 60%'
-                        }
-                    });
-                }
-
-                // Fade In and Translate Alternating Images
-                gsap.utils.toArray('.project-desktop-image-container').forEach((container, index) => {
-                    const xStart = (index % 2) ? 100 : -100;
-                    gsap.fromTo(container,
-                        {
-                            x: xStart,
-                            autoAlpha: 0
-                        },
-                        {
-                            x: 0,
-                            autoAlpha: 1,
-                            duration: 0.4,
-                            scrollTrigger: {
-                                trigger: container,
-                                start: 'top center'
-                            }
-                        }
-                    );
-                });
-
-                // Fade In and Translate Y Mobile Images
-                gsap.utils.toArray('.project-mobile-image-container').forEach((container, index) => {
-                    const image = container.querySelector('.img-responsive');
-                    gsap.fromTo(container,
-                        {
-                            y: 200,
-                            autoAlpha: 0
-                        },
-                        {
-                            y: 0,
-                            autoAlpha: 1,
-                            scrollTrigger: {
-                                trigger: image,
-                                start: 'top 70%'
-                            }
-                        }
-                    );
-                });
-            },
-            "(max-width: 1199px)": function () {
-
-                // Project Main Image Parallax on Mobile
-                let bg = document.querySelector('.project-hero-background');
-                bg.style.backgroundPosition = `50% 50%`;
-
-                gsap.to(bg, {
-                    backgroundPosition: `50% 30%`,
-                    ease: "none",
+                gsap.to('.project-awards', {
+                    autoAlpha: 1,
                     scrollTrigger: {
-                        trigger: '.project-header',
-                        start: 'top top',
-                        end: '+=75%',
-                        scrub: true
+                        trigger: '.project-awards',
+                        start: 'top 60%'
                     }
                 });
+            } else {
+                gsap.to('.project-synopsis', {
+                    autoAlpha: 1,
+                    scrollTrigger: {
+                        trigger: '.project-synopsis',
+                        start: 'top 60%'
+                    }
+                });
+            }
+
+            // Fade In and Translate Alternating Images
+            gsap.utils.toArray('.project-desktop-image-container').forEach((container, index) => {
+                const xStart = (index % 2) ? 100 : -100;
+                gsap.fromTo(container,
+                    {
+                        x: xStart,
+                        autoAlpha: 0
+                    },
+                    {
+                        x: 0,
+                        autoAlpha: 1,
+                        duration: 0.4,
+                        scrollTrigger: {
+                            trigger: container,
+                            start: 'top center'
+                        }
+                    }
+                );
+            });
+
+            // Fade In and Translate Y Mobile Images
+            gsap.utils.toArray('.project-mobile-image-container').forEach((container, index) => {
+                const image = container.querySelector('.img-responsive');
+                gsap.fromTo(container,
+                    {
+                        y: 200,
+                        autoAlpha: 0
+                    },
+                    {
+                        y: 0,
+                        autoAlpha: 1,
+                        scrollTrigger: {
+                            trigger: image,
+                            start: 'top 70%'
+                        }
+                    }
+                );
+            });
+        },
+        "(max-width: 1199px)": function () {
+
+            // Project Main Image Parallax on Mobile
+            let bg = document.querySelector('.project-hero-background');
+            bg.style.backgroundPosition = `50% 50%`;
+
+            gsap.to(bg, {
+                backgroundPosition: `50% 30%`,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: '.project-header',
+                    start: 'top top',
+                    end: '+=75%',
+                    scrub: true
+                }
+            });
+
+            // Fade In Awards or Mosaic
+            if (document.querySelector('.project-awards')) {
 
                 // Fade In Overview
                 gsap.to('.project-overview', {
@@ -570,81 +579,144 @@ if (document.body.classList.contains('project-body')) {
                         start: 'top 70%'
                     }
                 });
-
-                // Fade In Awards or Mosaic
-                if (document.querySelector('.project-awards')) {
-                    gsap.to('.project-awards', {
-                        autoAlpha: 1,
-                        scrollTrigger: {
-                            trigger: '.project-awards',
-                            start: 'top 70%'
-                        }
-                    });
-                } else {
-                    gsap.to('.project-mosaic', {
-                        autoAlpha: 1,
-                        scrollTrigger: {
-                            trigger: '.project-mosaic',
-                            start: 'top 70%'
-                        }
-                    });
-                }
-
-                // Fade In and Translate Alternating Images
-                gsap.utils.toArray('.project-desktop-image-container').forEach((container, index) => {
-                    const xStart = (index % 2) ? 100 : -100;
-                    gsap.fromTo(container,
-                        {
-                            x: xStart,
-                            autoAlpha: 0
-                        },
-                        {
-                            x: 0,
-                            autoAlpha: 1,
-                            duration: 0.4,
-                            scrollTrigger: {
-                                trigger: container,
-                                start: 'top 75%'
-                            }
-                        }
-                    );
+                gsap.to('.project-awards', {
+                    autoAlpha: 1,
+                    scrollTrigger: {
+                        trigger: '.project-awards',
+                        start: 'top 70%'
+                    }
                 });
-
-                // Fade In and Translate Y Mobile Images
-                gsap.utils.toArray('.project-mobile-image-container').forEach((container, index) => {
-                    const image = container.querySelector('.img-responsive');
-                    gsap.fromTo(container,
-                        {
-                            y: 100,
-                            autoAlpha: 0,
-                        },
-                        {
-                            y: 0,
-                            autoAlpha: 1,
-                            scrollTrigger: {
-                                trigger: image,
-                                start: 'top 75%',
-                            }
-                        }
-                    );
+            } else {
+                gsap.to('.project-synopsis', {
+                    autoAlpha: 1,
+                    scrollTrigger: {
+                        trigger: '.project-synopsis',
+                        start: 'top 70%'
+                    }
                 });
             }
-        });
 
-    });
+            // Fade In and Translate Alternating Images
+            gsap.utils.toArray('.project-desktop-image-container').forEach((container, index) => {
+                const xStart = (index % 2) ? 100 : -100;
+                gsap.fromTo(container,
+                    {
+                        x: xStart,
+                        autoAlpha: 0
+                    },
+                    {
+                        x: 0,
+                        autoAlpha: 1,
+                        duration: 0.4,
+                        scrollTrigger: {
+                            trigger: container,
+                            start: 'top 75%'
+                        }
+                    }
+                );
+            });
 
-    window.addEventListener('resize', () => {
-        windowResize(projectCircleCanvas);
-
-        updateCircle(projectCanvasContext, projectCircle);
+            // Fade In and Translate Y Mobile Images
+            gsap.utils.toArray('.project-mobile-image-container').forEach((container, index) => {
+                const image = container.querySelector('.img-responsive');
+                gsap.fromTo(container,
+                    {
+                        y: 100,
+                        autoAlpha: 0,
+                    },
+                    {
+                        y: 0,
+                        autoAlpha: 1,
+                        scrollTrigger: {
+                            trigger: image,
+                            start: 'top 75%',
+                        }
+                    }
+                );
+            });
+        }
     });
 }
+
+window.addEventListener('resize', () => {
+    windowResize(projectCircleCanvas);
+
+    updateCircle(projectCanvasContext, projectCircle);
+});
 
 /*********************
 * * CURTAINS JS IMPLEMENTATIONS
 *********************/
 
 window.addEventListener("load", () => {
+
+    /*********************
+    * * BARBAJS JAVASCRIPT
+    *********************/
+
+    const animationOut = (container) => {
+        return gsap.to(container, { autoAlpha: 0, duration: 1, clearProps: 'all' });
+    }
+
+    const animationIn = (container) => {
+        return gsap.from(container, { autoAlpha: 0, duration: 1, clearProps: 'all' });
+    }
+
+    // barba.hooks.beforeEnter(() => {
+
+    //     killScrollTriggers();
+
+    // });
+
+    // barba.hooks.before(() => {
+
+    //     document.querySelector('html').classList.add('is-transitioning');
+    //     barba.wrapper.classList.add('is-animating');
+
+    // });
+
+    // barba.hooks.after(() => {
+
+    //     document.querySelector('html').classList.remove('is-transitioning');
+    //     barba.wrapper.classList.remove('is-animating');
+
+    // });
+
+    // barba.hooks.enter(() => {
+    //     window.scrollTo(0, 0);
+    // });
+
+    // barba.hooks.afterEnter(() => {
+    //     ScrollTrigger.refresh(true);
+    // });
+
+    // barba.init({
+    //     debug: true,
+    //     views: [
+    //         {
+    //             namespace: 'home',
+    //             afterEnter() {
+    //                 initHomeAnimations();
+    //             }
+    //         },
+    //         {
+    //             namespace: 'project',
+    //             afterEnter() {
+    //                 initProjectAnimations();
+    //             }
+    //         }
+    //     ],
+    //     transitions: [{
+    //         name: 'opacity-transition',
+    //         leave: ({ current }) =>
+    //             animationOut(current.container),
+    //         enter({ next }) {
+    //             console.log('entering');
+    //             animationIn(next.container);
+    //         }
+    //     }],
+    // });
+
     // track the mouse positions to send it to the shaders
     const mousePosition = new Vec2();
     // we will keep track of the last position in order to calculate the movement strength/delta
@@ -688,13 +760,6 @@ window.addEventListener("load", () => {
             scrollEffect = curtains.lerp(scrollEffect, scrollDelta.y, 0.5);
         }
 
-        // // update the plane positions during scroll
-        // for (let i = 0; i < planes.length; i++) {
-        //     // apply additional translation, scale and rotation
-        //     applyPlanesParallax(plane);
-        //     deltas.max = 1.75;
-        // }
-
         planes.forEach((plane) => {
             applyPlanesParallax(plane);
             deltas.max = 1.15;
@@ -725,63 +790,63 @@ window.addEventListener("load", () => {
 
 
     const vs = `
-        precision mediump float;
-        // default mandatory variables
-        attribute vec3 aVertexPosition;
-        attribute vec2 aTextureCoord;
-        uniform mat4 uMVMatrix;
-        uniform mat4 uPMatrix;
-        
-        // our texture matrix uniform
-        uniform mat4 simplePlaneTextureMatrix;
-        // custom variables
-        varying vec3 vVertexPosition;
-        varying vec2 vTextureCoord;
-        uniform float uTime;
-        uniform vec2 uResolution;
-        uniform vec2 uMousePosition;
-        uniform float uMouseMoveStrength;
-        uniform float uTransition;
-        void main() {
-            vec3 vertexPosition = aVertexPosition;
-            // convert uTransition from [0,1] to [0,1,0]
-            float transition = 1.0 - abs((uTransition * 2.0) - 1.0);
-            // get the distance between our vertex and the mouse position
-            float distanceFromMouse = distance(uMousePosition, vec2(vertexPosition.x, vertexPosition.y));
-            // calculate our wave effect
-            float waveSinusoid = cos(5.0 * (distanceFromMouse - (uTime / 75.0)));
-            // attenuate the effect based on mouse distance
-            float distanceStrength = (0.4 / (distanceFromMouse + 0.4));
-            // calculate our distortion effect
-            float distortionEffect = distanceStrength * waveSinusoid * uMouseMoveStrength;
-            // apply it to our vertex position
-            vertexPosition.z +=  distortionEffect / 30.0;
-            vertexPosition.x +=  (distortionEffect / 30.0 * (uResolution.x / uResolution.y) * (uMousePosition.x - vertexPosition.x));
-            vertexPosition.y +=  distortionEffect / 30.0 * (uMousePosition.y - vertexPosition.y);
-            gl_Position = uPMatrix * uMVMatrix * vec4(vertexPosition, 1.0);
-            // varyings
-            vTextureCoord = (simplePlaneTextureMatrix * vec4(aTextureCoord, 0.0, 1.0)).xy;
-            vVertexPosition = vertexPosition;
-        }
-    `;
+            precision mediump float;
+            // default mandatory variables
+            attribute vec3 aVertexPosition;
+            attribute vec2 aTextureCoord;
+            uniform mat4 uMVMatrix;
+            uniform mat4 uPMatrix;
+
+            // our texture matrix uniform
+            uniform mat4 simplePlaneTextureMatrix;
+            // custom variables
+            varying vec3 vVertexPosition;
+            varying vec2 vTextureCoord;
+            uniform float uTime;
+            uniform vec2 uResolution;
+            uniform vec2 uMousePosition;
+            uniform float uMouseMoveStrength;
+            uniform float uTransition;
+            void main() {
+                vec3 vertexPosition = aVertexPosition;
+                // convert uTransition from [0,1] to [0,1,0]
+                float transition = 1.0 - abs((uTransition * 2.0) - 1.0);
+                // get the distance between our vertex and the mouse position
+                float distanceFromMouse = distance(uMousePosition, vec2(vertexPosition.x, vertexPosition.y));
+                // calculate our wave effect
+                float waveSinusoid = cos(5.0 * (distanceFromMouse - (uTime / 75.0)));
+                // attenuate the effect based on mouse distance
+                float distanceStrength = (0.4 / (distanceFromMouse + 0.4));
+                // calculate our distortion effect
+                float distortionEffect = distanceStrength * waveSinusoid * uMouseMoveStrength;
+                // apply it to our vertex position
+                vertexPosition.z +=  distortionEffect / 30.0;
+                vertexPosition.x +=  (distortionEffect / 30.0 * (uResolution.x / uResolution.y) * (uMousePosition.x - vertexPosition.x));
+                vertexPosition.y +=  distortionEffect / 30.0 * (uMousePosition.y - vertexPosition.y);
+                gl_Position = uPMatrix * uMVMatrix * vec4(vertexPosition, 1.0);
+                // varyings
+                vTextureCoord = (simplePlaneTextureMatrix * vec4(aTextureCoord, 0.0, 1.0)).xy;
+                vVertexPosition = vertexPosition;
+            }
+        `;
 
     const fs = `
-        precision mediump float;
-        varying vec3 vVertexPosition;
-        varying vec2 vTextureCoord;
-        uniform sampler2D simplePlaneTexture;
-        void main() {
-            // apply our texture
-            vec4 finalColor = texture2D(simplePlaneTexture, vTextureCoord);
-            // fake shadows based on vertex position along Z axis
-            finalColor.rgb -= clamp(-vVertexPosition.z, 0.0, 1.0);
-            // fake lights based on vertex position along Z axis
-            finalColor.rgb += clamp(vVertexPosition.z, 0.0, 1.0);
-            // handling premultiplied alpha (useful if we were using a png with transparency)
-            finalColor = vec4(finalColor.rgb * finalColor.a, finalColor.a);
-            gl_FragColor = finalColor;
-        }
-    `;
+            precision mediump float;
+            varying vec3 vVertexPosition;
+            varying vec2 vTextureCoord;
+            uniform sampler2D simplePlaneTexture;
+            void main() {
+                // apply our texture
+                vec4 finalColor = texture2D(simplePlaneTexture, vTextureCoord);
+                // fake shadows based on vertex position along Z axis
+                finalColor.rgb -= clamp(-vVertexPosition.z, 0.0, 1.0);
+                // fake lights based on vertex position along Z axis
+                finalColor.rgb += clamp(vVertexPosition.z, 0.0, 1.0);
+                // handling premultiplied alpha (useful if we were using a png with transparency)
+                finalColor = vec4(finalColor.rgb * finalColor.a, finalColor.a);
+                gl_FragColor = finalColor;
+            }
+        `;
 
     // some basic parameters
     const params = {
@@ -834,6 +899,7 @@ window.addEventListener("load", () => {
         handlePlanes(i);
 
     }
+
 
     // handle the plane
     function handlePlanes(index) {
@@ -1072,6 +1138,14 @@ window.addEventListener("load", () => {
             });
         }
     }
+
+    function destroyPlanes() {
+        planes.forEach((plane) => {
+            plane.remove();
+        });
+
+        planes = [];
+    }
 });
 
 /*********************
@@ -1200,6 +1274,19 @@ function drawBgRectangle(context, circle, rectangle) {
     context.fillStyle = "#141C28";
     context.fill();
 }
+
+/******** BARBAJS SPECIFIC FUNCTIONS ********/
+
+function killScrollTriggers() {
+    let triggers = ScrollTrigger.getAll();
+
+    triggers.forEach((trigger) => {
+        trigger.kill();
+        // console.log(trigger, 'has been killed');
+    });
+}
+
+/******** ENABLE/DISABLE SCROLL FUNCTIONS ********/
 
 function preventDefault(e) {
     e.preventDefault();
