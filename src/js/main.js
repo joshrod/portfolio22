@@ -110,8 +110,8 @@ function initHomeAnimations() {
             autoAlpha: 0
         });
 
-        heroTl.from('.split-text', {
-            y: 200,
+        heroTl.to('.split-text', {
+            y: 0,
             stagger: 0.03,
             duration: 0.6,
             ease: "circ.out"
@@ -135,6 +135,16 @@ function initHomeAnimations() {
             "<"
         );
     } else {
+
+        gsap.set('.split-text', {
+            y: 0
+        });
+        gsap.set('.hero-logo-container', {
+            opacity: 1
+        });
+        gsap.set('.hero-arrow-container', {
+            opacity: 1
+        });
         homeCircle.globalAlpha = 1;
         drawCircle(shapeCanvasContext, homeCircle);
     }
@@ -395,7 +405,7 @@ function initHomeAnimations() {
 * * PROJECT PAGE JAVASCRIPT
 *********************/
 
-function initProjectsAnimations() {
+function initProjectAnimations() {
     /******** PROJECT CIRCLE EXPANSION VARS ********/
 
     // Set The Canvas
@@ -649,22 +659,22 @@ window.addEventListener("load", () => {
     if (document.body.classList.contains('home')) {
         initHomeAnimations();
     } else if (document.body.classList.contains('project-body')) {
-        initProjectsAnimations();
+        initProjectAnimations();
     }
 
     /*********************
     * * BARBAJS JAVASCRIPT
     *********************/
 
-    const animationOut = (container) => {
-        return gsap.to(container, { autoAlpha: 0, duration: 1, clearProps: 'all' });
-    }
+    // const animationOut = (container) => {
+    //     return gsap.to(container, { autoAlpha: 0, duration: 1, clearProps: 'all' });
+    // }
 
-    const animationIn = (container) => {
-        return gsap.from(container, { autoAlpha: 0, duration: 1, clearProps: 'all' });
-    }
+    // const animationIn = (container) => {
+    //     return gsap.from(container, { autoAlpha: 0, duration: 1, clearProps: 'all' });
+    // }
 
-    // barba.hooks.beforeEnter(() => {
+    // barba.hooks.afterLeave(() => {
 
     //     killScrollTriggers();
 
@@ -677,10 +687,21 @@ window.addEventListener("load", () => {
 
     // });
 
-    // barba.hooks.after(() => {
+    // barba.hooks.after((data) => {
 
     //     document.querySelector('html').classList.remove('is-transitioning');
     //     barba.wrapper.classList.remove('is-animating');
+
+    //     if (data.next.namespace === 'project') {
+    //         console.log(data.next.namespace)
+    //         initProjectAnimations();
+    //     }
+    //     else if (data.next.namespace === 'home') {
+    //         initHomeAnimations();
+    //     }
+
+    //     ScrollTrigger.refresh(true);
+    //     countActiveScrollTriggers();
 
     // });
 
@@ -688,26 +709,8 @@ window.addEventListener("load", () => {
     //     window.scrollTo(0, 0);
     // });
 
-    // barba.hooks.afterEnter(() => {
-    //     ScrollTrigger.refresh(true);
-    // });
-
     // barba.init({
     //     debug: true,
-    //     views: [
-    //         {
-    //             namespace: 'home',
-    //             afterEnter() {
-    //                 initHomeAnimations();
-    //             }
-    //         },
-    //         {
-    //             namespace: 'project',
-    //             afterEnter() {
-    //                 initProjectAnimations();
-    //             }
-    //         }
-    //     ],
     //     transitions: [{
     //         name: 'opacity-transition',
     //         leave: ({ current }) =>
@@ -1308,11 +1311,25 @@ function drawBgRectangle(context, circle, rectangle) {
 
 function killScrollTriggers() {
     let triggers = ScrollTrigger.getAll();
+    let count = 0;
 
     triggers.forEach((trigger) => {
         trigger.kill();
-        // console.log(trigger, 'has been killed');
+        count++;
     });
+
+    console.log(count, 'ScrollTriggers killed');
+}
+
+function countActiveScrollTriggers() {
+    let triggers = ScrollTrigger.getAll();
+    let count = 0;
+
+    triggers.forEach((trigger) => {
+        count++;
+    });
+
+    console.log(count, 'ScrollTriggers on this page');
 }
 
 /******** ENABLE/DISABLE SCROLL FUNCTIONS ********/

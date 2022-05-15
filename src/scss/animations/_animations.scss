@@ -83,8 +83,15 @@
 		position: relative;
 		display: inline-block;
 		letter-spacing: -0.03em;
+		transform: translateY(200px);
 	}
 }
+
+.hero-logo-container, .hero-arrow-container {
+	opacity: 0;
+}
+
+
 
 .hero-arrow-placer {
 	width: 7rem;
@@ -170,6 +177,15 @@
 		.project-img-container {
 			overflow: hidden;
 			position: relative;
+
+			.project-img-cover {
+				background-color: $slightgray;
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+			}
 
 			.curtains-canvas {
 				position: absolute;
