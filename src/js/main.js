@@ -24,6 +24,26 @@ ScrollTrigger.defaults({
     // markers: true
 });
 
+/********************* 
+* * HOME PAGE VARS
+*********************/
+
+let shapeCanvas;
+let shapeCanvasContext;
+let homeCircle;
+let bgRectangle;
+
+// Variable to capture the End of ScrollTrigger in Pixels
+let rectTlEnd;
+
+/********************* 
+* * PROJECT PAGE VARS
+*********************/
+
+let projectCircleCanvas;
+let projectCanvasContext;
+let projectCircle;
+
 /*********************
 * * HOME PAGE JAVASCRIPT
 *********************/
@@ -33,11 +53,11 @@ function initHomeAnimations() {
     /******** HOME CIRCLE EXPANSION VARS ********/
 
     // Set The Canvas
-    const shapeCanvas = document.getElementById('gray-circle-canvas');
+    shapeCanvas = document.getElementById('gray-circle-canvas');
     shapeCanvas.width = vw;
     shapeCanvas.height = vh;
 
-    const shapeCanvasContext = shapeCanvas.getContext('2d');
+    shapeCanvasContext = shapeCanvas.getContext('2d');
 
     // Assign Starter Circle Parameters
     let starterRadius = calcStarterRadius(vw);
@@ -45,7 +65,7 @@ function initHomeAnimations() {
     let circleY = calcCircleY(vw, vh);
 
     // Make Circle Representable as an Animatable Object
-    const homeCircle = {
+    homeCircle = {
         radius: starterRadius,
         x: circleX,
         y: circleY,
@@ -55,12 +75,12 @@ function initHomeAnimations() {
     /******** HOME RECTANGLE EXPANSION VARS ********/
 
     // Make BG Rectangle Representable as an Animatable Object
-    const bgRectangle = {
+    bgRectangle = {
         width: 0
     }
 
     // Variable to capture the End of ScrollTrigger in Pixels
-    let rectTlEnd;
+    // let rectTlEnd;
 
     /******** HERO SECTION ANIMATIONS ********/
 
@@ -369,20 +389,6 @@ function initHomeAnimations() {
         }
     });
 
-    /*********************
-    * * HOME WINDOW RESIZE EVENT LISTENER
-    *********************/
-
-    window.addEventListener('resize', () => {
-        windowResize(shapeCanvas);
-
-        updateCircle(shapeCanvasContext, homeCircle);
-
-        if (scrollY >= rectTlEnd) {
-            drawBgRectangle(shapeCanvasContext, homeCircle, bgRectangle);
-        }
-    });
-
 }
 
 /*********************
@@ -393,11 +399,11 @@ function initProjectsAnimations() {
     /******** PROJECT CIRCLE EXPANSION VARS ********/
 
     // Set The Canvas
-    const projectCircleCanvas = document.getElementById('project-circle-canvas');
+    projectCircleCanvas = document.getElementById('project-circle-canvas');
     projectCircleCanvas.width = vw;
     projectCircleCanvas.height = vh;
 
-    const projectCanvasContext = projectCircleCanvas.getContext('2d');
+    projectCanvasContext = projectCircleCanvas.getContext('2d');
 
     // Assign Starter Circle Parameters
     let starterRadius = 0;
@@ -405,7 +411,7 @@ function initProjectsAnimations() {
     let circleY = vh / 2;
 
     // Make Circle Representable as an Animatable Object
-    const projectCircle = {
+    projectCircle = {
         radius: starterRadius,
         x: circleX,
         y: circleY,
@@ -635,12 +641,6 @@ function initProjectsAnimations() {
                 );
             });
         }
-    });
-
-    window.addEventListener('resize', () => {
-        windowResize(projectCircleCanvas);
-
-        updateCircle(projectCanvasContext, projectCircle);
     });
 }
 
@@ -1152,6 +1152,29 @@ window.addEventListener("load", () => {
 
         planes = [];
     }
+});
+
+/*********************
+* * GLOBAL WINDOW RESIZE EVENT LISTENER
+*********************/
+
+window.addEventListener('resize', () => {
+
+    if (document.body.classList.contains('home')) {
+        windowResize(shapeCanvas);
+
+        updateCircle(shapeCanvasContext, homeCircle);
+
+        if (scrollY >= rectTlEnd) {
+            drawBgRectangle(shapeCanvasContext, homeCircle, bgRectangle);
+        }
+    }
+    else if (document.body.classList.contains('project-body')) {
+        windowResize(projectCircleCanvas);
+
+        updateCircle(projectCanvasContext, projectCircle);
+    }
+
 });
 
 /*********************
