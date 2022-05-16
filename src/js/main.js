@@ -348,7 +348,7 @@ function initHomeAnimations() {
 
             // Timeline Animation (include onUpdate function here)
             circleTl.to(homeCircle, {
-                radius: () => calcFillRadius(vw, vh, homeCircle) + 50,
+                radius: () => calcFillRadius(vw, vh, homeCircle) + 100,
                 onUpdate: () => { drawCircle(shapeCanvasContext, homeCircle) }
             });
             circleTl.to('.hero-arrow-container',
@@ -443,11 +443,13 @@ function initProjectAnimations() {
 
     // Timeline Animation (include onUpdate function here)
     projectCircleTl.to(projectCircle, {
-        radius: () => calcFillRadius(vw, vh, projectCircle) + 50,
+        radius: () => calcFillRadius(vw, vh, projectCircle) + 100,
         onUpdate: () => { drawCircle(projectCanvasContext, projectCircle) }
     });
 
     // Set Things That Need to Be Faded In
+
+
 
     if (document.querySelector('.project-awards')) {
         gsap.set('.project-overview', {
@@ -460,6 +462,48 @@ function initProjectAnimations() {
     } else {
         gsap.set('.project-synopsis', {
             autoAlpha: 0
+        });
+    }
+
+    /******** PROJECT INTRO ANIMATIONS ********/
+
+    if (scrollY === 0) {
+        let projectIntroTl = gsap.timeline(
+            {
+                // onStart: disableScroll,
+                // onComplete: enableScroll
+                onStart: () => {
+                    disableScroll();
+                },
+                onComplete: () => {
+                    enableScroll();
+                }
+            }
+        );
+
+        projectIntroTl.to('.project-hero-cover', {
+            yPercent: -100,
+            duration: 0.7
+        });
+        projectIntroTl.to('.project-header', {
+            autoAlpha: 1
+        });
+        projectIntroTl.to('.project-quick-hits',
+            {
+                autoAlpha: 1
+            },
+            "<"
+        )
+    } else {
+
+        gsap.set('.project-hero-cover', {
+            yPercent: -100
+        });
+        gsap.set('.project-header', {
+            opacity: 1
+        });
+        gsap.set('.project-quick-hits', {
+            opacity: 1
         });
     }
 
@@ -1275,12 +1319,13 @@ function updateCircle(context, circle) {
         starterRadius = calcStarterRadius(vw);
         circleX = calcCircleX(vw);
         circleY = calcCircleY(vw, vh);
-        fillRadius = calcFillRadius(vw, vh, circle);
+        // fillRadius = calcFillRadius(vw, vh, circle);
+        fillRadius = vw >= 1200 ? calcFillRadius(vw, vh, circle) : calcFillRadius(vw, vh, circle) + 100;
     } else {
         starterRadius = 0;
         circleX = vw / 2;
         circleY = vh / 2;
-        fillRadius = calcFillRadius(vw, vh, circle);
+        fillRadius = calcFillRadius(vw, vh, circle) + 100;
     }
 
     circle.x = circleX;

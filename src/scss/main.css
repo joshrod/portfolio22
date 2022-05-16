@@ -2667,6 +2667,7 @@ header.home-header .logo-container svg {
   height: 12.152777777777777vmax;
   padding-top: 0;
   padding-bottom: 0;
+  opacity: 0;
 }
 
 @media only screen and (min-width: 768px) {
@@ -2690,6 +2691,7 @@ header.home-header .logo-container svg {
 .project-hero-container {
   height: 65vmax;
   position: relative;
+  overflow: hidden;
 }
 
 @media only screen and (min-width: 1200px) {
@@ -2702,6 +2704,16 @@ header.home-header .logo-container svg {
   .project-hero-container {
     height: 86.66666666666666664vmin;
   }
+}
+
+.project-hero-container .project-hero-cover {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #FFFFFF;
+  z-index: 2;
 }
 
 .project-hero-container .project-hero-background {
@@ -2751,6 +2763,10 @@ header.home-header .logo-container svg {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.project-quick-hits {
+  opacity: 0;
 }
 
 .next-project .project-img-container {

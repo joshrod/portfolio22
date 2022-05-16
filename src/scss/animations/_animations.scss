@@ -369,6 +369,7 @@
 	height: 12.152777777777777vmax;
 	padding-top: 0;
 	padding-bottom: 0;
+	opacity: 0;
 	@include breakpoint(md) {
 		height: 9.765625vmax;
 	}
@@ -384,11 +385,22 @@
 .project-hero-container {
 	height: 65vmax;
 	position: relative;
+	overflow: hidden;
 	@include breakpoint(xl) {
 		height: 83.33333333333333336vmin;
 	}
 	@include breakpoint(xxl) {
 		height: 86.66666666666666664vmin;
+	}
+
+	.project-hero-cover {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background-color: #FFFFFF;
+		z-index: 2;
 	}
 
 	.project-hero-background {
@@ -439,6 +451,10 @@
 			left: 0;
 		}
 	}
+}
+
+.project-quick-hits {
+	opacity: 0;
 }
 
 .next-project {
