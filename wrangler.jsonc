@@ -1,0 +1,9 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "portfolio22",
+	"compatibility_date": "2026-11-13",
+	// Static site only: upload Vite's build output, no Worker script.
+	"assets": {
+		"directory": "./dist"
+	}
+}
