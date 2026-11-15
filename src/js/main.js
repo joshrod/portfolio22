@@ -1,3 +1,8 @@
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+import { Curtains, Plane, Vec2, Vec3 } from 'curtainsjs';
+
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 /********************* 
@@ -1151,7 +1156,7 @@ window.addEventListener("load", () => {
                 textureScale: 1,
                 mouseX: 0,
                 mouseY: 0,
-                ease: Power3.easeInOut,
+                ease: 'power3.inOut',
                 onUpdate: function () {
                     // plane scale
                     newScale.set(animation.scaleX, animation.scaleY);

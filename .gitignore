@@ -1,0 +1,9 @@
+node_modules/
+dist/
+
+# Old output from the Live Sass Compiler VS Code extension
+src/scss/main.css
+src/scss/main.css.map
+
+.DS_Store
+Thumbs.db
